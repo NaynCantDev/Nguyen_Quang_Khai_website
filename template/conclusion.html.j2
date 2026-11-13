@@ -1,0 +1,38 @@
+{% extends "_base.html.j2" %}
+{% block title %}Tổng kết — {{ name }}{% endblock %}
+{% block main %}
+<header class="phead phead-end">
+  <div class="wrap phead-end-grid">
+    <div>
+      <p class="phead-kicker">{{ subject }}</p>
+      <h1 class="phead-title">Tổng kết</h1>
+      <p class="phead-lead">Nhìn lại sáu bài tập của học phần và hướng đi tiếp theo.</p>
+    </div>
+    <figure class="end-photo">{{ img('photos/chan-dung.webp', 'Chân dung ' ~ name, lazy=False) }}</figure>
+  </div>
+</header>
+
+<section class="wrapup">
+  <div class="wrap wrapup-grid">
+    <div class="wu wu-wide"><h2>Trải nghiệm</h2><p>{{ conclusion.experience }}</p></div>
+    <div class="wu wu-skills"><h2>Kỹ năng đã rèn</h2><ul>{% for s in conclusion.key_skills %}<li>{{ s }}</li>{% endfor %}</ul></div>
+    <div class="wu"><h2>Sản phẩm nổi bật</h2><p>{{ conclusion.highlight }}</p><p><a class="btn btn-dark" href="bai-5.html">Mở Bài 5</a></p></div>
+    <div class="wu"><h2>Khó khăn và cách vượt qua</h2><p>{{ conclusion.challenge }}</p></div>
+    <div class="wu wu-wide wu-future"><h2>Hướng đi tiếp</h2><p>{{ conclusion.future }}</p></div>
+  </div>
+</section>
+
+<section class="cadence">
+  <div class="wrap">
+    <h2 class="h-big">Kết bài</h2>
+    <p class="cadence-lead">Một bài nhạc thường khép lại bằng vòng kết: hợp âm bốn sáu kết, rồi hợp âm át bảy, rồi về chủ. Portfolio này cũng khép lại như thế.</p>
+    <div class="cadence-row" data-cadence>
+      <button type="button" class="cad" data-chord="3,3,2,0,1,0"><b>K<sup>6</sup><sub>4</sub></b><span>bốn sáu kết</span></button>
+      <button type="button" class="cad" data-chord="3,2,0,0,0,1"><b>D<sup>7</sup></b><span>át bảy</span></button>
+      <button type="button" class="cad" data-chord="-1,3,2,0,1,0"><b>T</b><span>chủ</span></button>
+    </div>
+    <p><button type="button" class="btn btn-strum" data-cadence-play>Nghe cả vòng kết</button></p>
+    <p class="quote-end">“{{ quote }}”</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,9 @@
+# Netlify: mỗi lần push lên main sẽ tự chạy lệnh build rồi xuất bản thư mục dist/
+[build]
+  command = "pip install -r requirements.txt && python scripts/render.py"
+  publish = "dist"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

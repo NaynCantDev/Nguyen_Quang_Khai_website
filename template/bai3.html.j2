@@ -1,0 +1,44 @@
+{% from "_macros.html.j2" import shot %}
+<p class="product-lead">Ba tác vụ, mỗi tác vụ ba phiên bản prompt chạy trên Gemini. Chọn tác vụ để xem prompt và ảnh chụp kết quả.</p>
+
+<div class="tasks" data-tabs>
+  <div class="tabs" role="tablist" aria-label="Ba tác vụ">
+    {% for t in d.tasks %}
+    <button type="button" role="tab" id="tab-{{ t.n }}" aria-controls="task-{{ t.n }}" aria-selected="{{ 'true' if loop.first else 'false' }}"><small>Tác vụ {{ t.n }}</small>{{ t.name }}</button>
+    {% endfor %}
+  </div>
+  {% for t in d.tasks %}
+  <div class="task" role="tabpanel" id="task-{{ t.n }}" aria-labelledby="tab-{{ t.n }}"{% if not loop.first %} hidden{% endif %}>
+    <h3 class="task-h">Tác vụ {{ t.n }}: {{ t.name }}</h3>
+    {% if t.material %}<p class="task-material">Tài liệu dùng để tóm tắt: <a href="{{ t.material.url }}" target="_blank" rel="noopener">{{ t.material.label }}</a></p>{% endif %}
+    {% for v in t.versions %}
+    {% set lv = d.levels[loop.index0] %}
+    <article class="ver ver-{{ lv.key }}">
+      <header><i class="dyn" title="Ký hiệu cường độ">{{ lv.dyn }}</i><h4>Prompt {{ lv.name | lower }}</h4></header>
+      <pre class="prompt">{{ v.prompt | trim }}</pre>
+      {{ shot(v.shot, 'Tác vụ ' ~ t.n ~ ', prompt ' ~ (lv.name | lower) ~ ': kết quả trên Gemini', 'bai3') }}
+    </article>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+<article class="essay">
+  <h3>Phân tích và đánh giá kết quả thử nghiệm</h3>
+  <p>{{ d.analysis_intro }}</p>
+  {% for a in d.analysis %}
+  <h4>{{ loop.index }}. {{ a.title }}</h4>
+  {% for p in a.paras %}<p>{{ p }}</p>{% endfor %}
+  {% if a.points %}<ul>{% for p in a.points %}<li>{{ p | md }}</li>{% endfor %}</ul>{% endif %}
+  {% for p in a.after or [] %}<p>{{ p }}</p>{% endfor %}
+  {% endfor %}
+</article>
+
+<div class="recap">
+  <h3>Tổng kết</h3>
+  <div class="recap-grid">
+    <div><h4>Nguyên tắc vàng</h4><ul>{% for x in d.summary.golden %}<li>{{ x | md }}</li>{% endfor %}</ul></div>
+    <div><h4>Mẹo thực chiến</h4><ul>{% for x in d.summary.tips %}<li>{{ x | md }}</li>{% endfor %}</ul></div>
+  </div>
+  <div class="formula"><h4>Công thức áp dụng nhanh</h4><p>{{ d.summary.formula }}</p></div>
+</div>

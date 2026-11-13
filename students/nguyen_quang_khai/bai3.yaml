@@ -1,0 +1,126 @@
+# Bài 3 — prompt, phân tích và tổng kết giữ nguyên văn bài làm của Khải.
+levels:
+  - { key: co-ban, name: Cơ bản, dyn: p }
+  - { key: cai-tien, name: Cải tiến, dyn: mf }
+  - { key: nang-cao, name: Nâng cao, dyn: f }
+tasks:
+  - n: 1
+    name: Tóm tắt tài liệu
+    material: { label: Lý thuyết âm nhạc cơ bản, url: 'https://drive.google.com/file/d/1mui_lT4omrEN8Q_jPnOpvXiRB1A8xXx5/view?usp=drive_link' }
+    versions:
+      - shot: bai3/t1_co-ban.webp
+        prompt: |
+          Hãy tóm tắt tài liệu này
+      - shot: bai3/t1_cai-tien.webp
+        prompt: |
+          Hãy tóm tắt tài liệu sau dành cho sinh viên đại học sư phạm âm nhạc
+          Yêu cầu:
+          * Xác định các chương bài chính của tài liệu
+          * Tóm tắt mỗi chương 5-7 mục quan trọng
+          * Giữ lại những thông tin quan trọng về bài hợp âm
+          * Viết ngắn gọn, dễ hiểu và dễ học thuộc.
+          * Không thêm thông tin không có trong tài liệu.
+      - shot: bai3/t1_nang-cao.webp
+        prompt: |
+          Bạn là chuyên gia phân tích học thuật. Hãy phân tích giáo trình trên theo các tiêu chí sau:
+          1. Cấu trúc & Mạch tư duy: Sợi chỉ đỏ và logic sắp xếp.
+          2. Khái niệm & Luận điểm cốt lõi: Các khái niệm then chốt và luận điểm chính.
+          3. Giá trị lý luận & Thực tiễn: Ý nghĩa khoa học và khả năng ứng dụng.
+          4. Phản biện & Góc nhìn mở: Các vấn đề còn bỏ ngỏ hoặc góc nhìn bổ sung.
+          5. Tóm tắt trực quan: Tổng hợp Key takeaways cốt lõi.
+  - n: 2
+    name: Giải thích khái niệm phức tạp
+    versions:
+      - shot: bai3/t2_co-ban.webp
+        prompt: |
+          Hãy giải thích khái niệm hợp âm bốn sáu kết trong môn Hòa thanh.
+      - shot: bai3/t2_cai-tien.webp
+        prompt: |
+          Hãy giải thích hợp âm bốn sáu kết trong môn Hòa thanh cho sinh viên năm 2 ngành Sư phạm Âm nhạc.
+          Yêu cầu:
+          * Giải thích khái niệm bằng ngôn ngữ đơn giản.
+          * Nêu cấu tạo của hợp âm.
+          * Giải thích chức năng của hợp âm.
+          * Cho một ví dụ minh họa.
+          * Giải thích cách sử dụng trong bài phối.
+          * Nêu những lỗi sinh viên thường gặp.
+      - shot: bai3/t2_nang-cao.webp
+        prompt: |
+          Bạn là giảng viên Hòa thanh đang hướng dẫn sinh viên năm 2 ngành Sư phạm Âm nhạc.Hãy giải thích khái niệm “hợp âm bốn sáu kết” theo phương pháp từ cơ bản đến nâng cao.Thực hiện theo các bước:
+          1. Giải thích khái niệm bằng ngôn ngữ đơn giản.
+          2. Phân tích cấu tạo của hợp âm.
+          3. Giải thích chức năng hòa thanh.
+          4. Đưa ra ví dụ cụ thể trong một giọng trưởng.
+          5. Giải thích cách áp dụng khi phối cho giai điệu.
+          6. Chỉ ra 2–3 lỗi thường gặp.
+          7. Cuối cùng, đưa ra một phần “Ghi nhớ nhanh” gồm 3 ý.
+          Hãy sử dụng ví dụ chính xác về mặt lý thuyết Hòa thanh và giải thích rõ lý do sử dụng hợp âm trong ví dụ.
+  - n: 3
+    name: Tạo bộ câu hỏi ôn tập
+    versions:
+      - shot: bai3/t3_co-ban.webp
+        prompt: |
+          tạo bộ câu hỏi ôn tập 10 câu về môn hòa thanh
+      - shot: bai3/t3_cai-tien.webp
+        prompt: |
+          tạo bộ câu hỏi ôn tập 10 câu về môn hòa thanh cụ thể là về hợp âm k 64 kết cho sinh viên năm 2 đại học sư phạm âm nhạc
+      - shot: bai3/t3_nang-cao.webp
+        prompt: |
+          Bạn là một Giáo sư/Chuyên gia Lý thuyết Âm nhạc và Hòa thanh cổ điển (Classical Harmony Professor) có nhiều năm kinh nghiệm giảng dạy tại các nhạc viện.
+          Nhiệm vụ của bạn là giải thích, phân tích hoặc hướng dẫn giải quyết các vấn đề thuộc bộ môn **Hòa thanh cơ bản** dựa trên các quy tắc học thuật chuẩn mực (luật dẫn giọng, chức năng hòa thanh T-S-D, chuyển giọng, hợp âm bảy át, âm ngoài hợp âm...).
+
+          1. Nội dung cần xử lý:
+          - Chủ đề/Câu hỏi cốt lõi:** [Điền nội dung, ví dụ: Giải thích cách giải quyết hợp âm V7 trong giọng trưởng / Phân tích các bước tiến hành hòa thanh T - S6 - D7 - T / Tìm lỗi sai trong đoạn dẫn giọng 4 bè...]
+          - Dữ liệu bài tập (nếu có):** [Dán đề bài, dãy số bậc hợp âm, hoặc chuỗi nốt nhạc cần hòa âm vào đây]
+          - Mục tiêu mong muốn:** [Điền mục tiêu: Giải thích lý thuyết / Hướng dẫn từng bước làm bài tập / Chỉ ra lỗi sai và cách sửa / Lấy ví dụ minh họa]
+
+          2. Tiêu chuẩn phản hồi bắt buộc:
+          - Tuân thủ luật hòa thanh truyền thống:** Chỉ rõ cách sắp xếp bè (Soprano, Alto, Tenor, Bass), khoảng cách bè và việc tránh các lỗi cơ bản (quãng 5/8 song song, chuyển động cùng chiều ẩn...).
+          - Giải thích chức năng:** Phân tích rõ chức năng hòa thanh của từng hợp âm (Chủ âm - Tonic, Hạ át - Subdominant, Át - Dominant).
+          - Trình bày trực quan:** Sử dụng ký hiệu quốc tế chuẩn (Ký hiệu La Mã: I, IV, V, V7; ký hiệu số quãng 6, 6/4...) kết hợp bảng hoặc danh sách dễ nhìn.
+
+analysis_intro: 'Sau khi tiến hành thử nghiệm ba loại tác vụ học tập gồm: tóm tắt tài liệu, giải thích khái niệm và tạo bộ câu hỏi ôn tập, với ba mức độ prompt là cơ bản, cải tiến và nâng cao, có thể nhận thấy cách xây dựng prompt có ảnh hưởng rõ rệt đến nội dung, cấu trúc và mức độ phù hợp của kết quả do công cụ AI tạo ra.'
+analysis:
+  - title: So sánh giữa ba mức độ prompt
+    paras:
+      - Đối với tác vụ tóm tắt tài liệu, prompt cơ bản chỉ yêu cầu AI “tóm tắt tài liệu” nên kết quả chủ yếu phụ thuộc vào cách AI tự xác định những thông tin quan trọng. Nội dung nhìn chung vẫn đáp ứng được yêu cầu nhưng có thể chưa phù hợp hoàn toàn với mục đích học tập, chẳng hạn như chưa ưu tiên những kiến thức cần ghi nhớ hoặc chưa có cấu trúc thuận tiện cho việc ôn thi.
+      - Ở prompt cải tiến, người dùng đã bổ sung các yêu cầu cụ thể như số lượng ý, đối tượng sử dụng, nội dung cần giữ lại và yêu cầu không thêm thông tin ngoài tài liệu. Vì vậy, kết quả có định hướng rõ ràng hơn, ngắn gọn hơn và phù hợp hơn với nhu cầu học tập của sinh viên.
+      - Prompt nâng cao tiếp tục bổ sung vai trò của AI, cấu trúc đầu ra và tiêu chí xử lý thông tin. Chẳng hạn, AI được yêu cầu đóng vai trò trợ giảng, trình bày nội dung theo từng mục và cuối cùng rút ra những ý quan trọng nhất. Nhờ đó, kết quả không chỉ là bản tóm tắt mà còn có thể được sử dụng trực tiếp như một tài liệu hỗ trợ ôn tập.
+      - Đối với tác vụ giải thích khái niệm, sự khác biệt giữa các prompt cũng thể hiện khá rõ. Prompt cơ bản chỉ yêu cầu giải thích “hợp âm bốn sáu kết”, do đó AI có thể đưa ra cách giải thích mang tính khái quát và sử dụng nhiều thuật ngữ chuyên môn mà người học chưa chắc đã hiểu.
+      - Prompt cải tiến xác định rõ người tiếp nhận là sinh viên năm 2 ngành Sư phạm Âm nhạc, đồng thời yêu cầu giải thích khái niệm, cấu tạo, chức năng, ví dụ và lỗi thường gặp. Kết quả vì vậy có tính phù hợp với người học cao hơn.
+      - Ở prompt nâng cao, yêu cầu được sắp xếp theo trình tự từ cơ bản đến nâng cao. Việc yêu cầu AI giải thích từng bước, đưa ra ví dụ và có phần “Ghi nhớ nhanh” giúp thông tin được trình bày có hệ thống hơn. Điều này đặc biệt hữu ích đối với những khái niệm khó, bởi người học có thể tiếp cận kiến thức từ phần đơn giản trước rồi mới chuyển sang phần chuyên sâu.
+      - Đối với tác vụ tạo câu hỏi ôn tập, prompt cơ bản tạo ra một danh sách câu hỏi nhưng chưa kiểm soát được số lượng, mức độ và dạng câu hỏi. Prompt cải tiến đã bổ sung các yêu cầu về số lượng, mức độ nhận biết – thông hiểu – vận dụng và đáp án, vì vậy bộ câu hỏi có tính hệ thống hơn.
+      - Prompt nâng cao quy định cụ thể số lượng câu ở từng mức độ, yêu cầu đáp án, giải thích và định dạng bảng. Kết quả vì vậy thuận tiện hơn cho việc sử dụng trong học tập và ôn thi. Đồng thời, việc yêu cầu bám sát tài liệu giúp hạn chế tình trạng AI tự bổ sung những nội dung không nằm trong nguồn học tập được cung cấp.
+  - title: Vì sao prompt cải tiến và prompt nâng cao cho kết quả phù hợp hơn?
+    paras:
+      - Qua ba tác vụ, có thể nhận thấy prompt càng cung cấp đầy đủ thông tin cần thiết thì AI càng có cơ sở để xác định chính xác nhiệm vụ cần thực hiện. Tuy nhiên, điều này không có nghĩa là prompt càng dài thì càng tốt. Một prompt dài nhưng chứa nhiều yêu cầu không liên quan hoặc mâu thuẫn vẫn có thể tạo ra kết quả không phù hợp.
+      - 'Sự cải thiện của prompt chủ yếu đến từ việc bổ sung thông tin có mục đích. Cụ thể:'
+    points:
+      - '**Xác định mục tiêu:** AI biết chính xác người dùng muốn tóm tắt, giải thích hay tạo câu hỏi.'
+      - '**Cung cấp bối cảnh:** AI hiểu nhiệm vụ thuộc môn học nào và được sử dụng trong hoàn cảnh nào.'
+      - '**Xác định đối tượng:** Khi biết nội dung dành cho sinh viên năm 2, AI có thể lựa chọn cách diễn đạt và mức độ kiến thức phù hợp hơn.'
+      - '**Đưa ra tiêu chí cụ thể:** Số lượng, độ dài, mức độ chi tiết và nội dung cần có giúp giảm sự tùy ý trong kết quả.'
+      - '**Quy định cấu trúc đầu ra:** Việc yêu cầu trình bày theo bảng, gạch đầu dòng hoặc các mục cụ thể giúp kết quả dễ đọc và dễ sử dụng.'
+      - '**Đưa ra vai trò hoặc ví dụ:** Khi yêu cầu AI đóng vai trò giảng viên hoặc trợ giảng, cách trình bày có thể phù hợp hơn với mục tiêu học tập. Nếu cung cấp một ví dụ mẫu, AI cũng có thêm cơ sở để định hướng cách tạo ra kết quả.'
+    after:
+      - Như vậy, điểm khác biệt quan trọng nhất giữa ba mức độ prompt không nằm đơn thuần ở độ dài, mà nằm ở mức độ rõ ràng và có chủ đích của yêu cầu.
+  - title: Những hạn chế trong quá trình thử nghiệm
+    paras:
+      - Mặc dù prompt nâng cao thường tạo ra kết quả có cấu trúc và phù hợp hơn, kết quả do AI tạo ra vẫn cần được người học kiểm tra. AI có thể diễn đạt lại thông tin chưa chính xác, bỏ sót nội dung quan trọng hoặc bổ sung thông tin không phù hợp với tài liệu ban đầu.
+      - Đặc biệt đối với những môn học có yêu cầu chính xác về kiến thức chuyên ngành như Hòa thanh, Lịch sử âm nhạc hoặc các môn lý luận chính trị, người học không nên sử dụng kết quả AI một cách hoàn toàn thụ động. Cần đối chiếu với giáo trình, tài liệu do giảng viên cung cấp và kiến thức đã được học trên lớp.
+      - Bên cạnh đó, một prompt nâng cao với quá nhiều yêu cầu cũng có thể khiến kết quả trở nên dài hoặc phức tạp hơn mức cần thiết. Vì vậy, người dùng cần lựa chọn những yêu cầu thực sự cần thiết thay vì đưa quá nhiều chỉ dẫn vào một prompt.
+  - title: Đánh giá chung
+    paras:
+      - Từ kết quả thử nghiệm, có thể thấy việc xây dựng prompt là một kỹ năng quan trọng khi sử dụng các mô hình ngôn ngữ lớn trong học tập. Prompt cơ bản phù hợp với những yêu cầu đơn giản và nhanh chóng. Prompt cải tiến phù hợp khi người dùng cần kiểm soát rõ hơn về nội dung và hình thức. Prompt nâng cao có ưu điểm khi thực hiện những nhiệm vụ phức tạp, cần nhiều bước xử lý hoặc yêu cầu đầu ra có cấu trúc cụ thể.
+      - Do đó, khi sử dụng AI trong học tập, sinh viên nên chuyển từ cách đặt câu hỏi chung chung sang cách đưa ra yêu cầu có mục tiêu, bối cảnh và tiêu chí rõ ràng. Đồng thời, kết quả AI tạo ra vẫn cần được kiểm tra và đối chiếu với nguồn tài liệu đáng tin cậy trước khi sử dụng.
+summary:
+  golden:
+    - '**Cụ thể hóa tối đa:** Nêu rõ chủ đề, đối tượng, văn phong và độ dài (tránh nói chung chung).'
+    - '**Đóng vai (Role-play):** Gán cho AI một vai trò chuyên gia cụ thể (vd: *Giảng viên Hòa thanh, Chuyên gia SEO*).'
+    - '**Chia nhỏ vấn đề:** Với yêu cầu phức tạp, hãy đi từng bước (lập dàn ý → viết chi tiết → sửa lỗi).'
+  tips:
+    - '**Dùng khung cấu trúc:** Chia rõ các phần bằng dấu ngoặc hoặc tiêu đề ([Bối cảnh], [Nhiệm vụ], [Định dạng]).'
+    - '**Đưa ví dụ mẫu:** Dán 1–2 mẫu có sẵn nếu muốn AI bắt chước đúng văn phong hoặc bố cục.'
+    - '**Đặt "vùng cấm":** Nói rõ những điều AI **không được làm** (vd: *không dùng từ ngữ sáo rỗng, không viết quá 200 chữ*).'
+    - '**Chốt định dạng:** Luôn yêu cầu rõ hình thức trả về (bảng biểu, gạch đầu dòng, hay đoạn văn).'
+  formula: '"Hãy đóng vai [Vai trò]. Tôi đang cần [Mục tiêu/Bối cảnh]. Hãy thực hiện [Nhiệm vụ cụ thể] dưới dạng [Bảng/Gạch đầu dòng], văn phong [Chuyên nghiệp/Dễ hiểu]. Lưu ý không [Điều cần tránh]."'

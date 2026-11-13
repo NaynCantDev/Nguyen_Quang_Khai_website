@@ -1,0 +1,54 @@
+{% extends "_base.html.j2" %}
+{% block title %}Bài {{ project.id }}: {{ project.title }} — {{ name }}{% endblock %}
+{% block main %}
+<header class="phead phead-bai">
+  <div class="wrap">
+    <p class="phead-kicker"><a href="projects.html">Bài tập</a> / {{ project.chapter }}</p>
+    <div class="phead-row">
+      <span class="phead-num">{{ project.id }}</span>
+      <h1 class="phead-title">{{ project.title }}</h1>
+    </div>
+    <p class="phead-string">Dây {{ project.string }}, nốt {{ project.note }}. Chạm vào dây để gảy.</p>
+  </div>
+  <div class="string string-head" data-string="{{ project.string }}" data-hz="{{ open_hz[project.string] }}" aria-hidden="true"></div>
+</header>
+
+<section class="brief">
+  <div class="wrap brief-grid">
+    <div class="brief-goal">
+      <h2>Mục tiêu</h2>
+      <p>{{ project.objective }}</p>
+    </div>
+    <div class="brief-how">
+      <h2>Quá trình thực hiện</h2>
+      <ol>{% for s in project.process %}<li>{{ s }}</li>{% endfor %}</ol>
+    </div>
+    <div class="brief-tools">
+      <h2>Công cụ</h2>
+      <p>{{ project.tools }}</p>
+      {% if project.ai_use %}
+      <h2>AI đã sử dụng</h2>
+      <p>{{ project.ai_use }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="product product-{{ project.id }}">
+  <div class="wrap">
+    <h2 class="product-h">Sản phẩm</h2>
+    {% set d = project.product %}
+    {% include "bai" ~ project.id ~ ".html.j2" %}
+  </div>
+</section>
+
+<section class="after">
+  <div class="wrap">
+    <p class="source">Nguồn: bài làm gốc của {{ name }} trong tài liệu <a href="{{ source_doc }}" target="_blank" rel="noopener">{{ source_doc_title }}</a> (Google Docs).</p>
+    <nav class="pager" aria-label="Bài trước và bài sau">
+      {% if prev_p %}<a class="pager-prev" href="bai-{{ prev_p.id }}.html"><small>Bài {{ prev_p.id }}</small><b>{{ prev_p.title }}</b></a>{% else %}<a class="pager-prev" href="projects.html"><small>Quay lại</small><b>Danh sách bài tập</b></a>{% endif %}
+      {% if next_p %}<a class="pager-next" href="bai-{{ next_p.id }}.html"><small>Bài {{ next_p.id }}</small><b>{{ next_p.title }}</b></a>{% else %}<a class="pager-next" href="conclusion.html"><small>Tiếp theo</small><b>Tổng kết</b></a>{% endif %}
+    </nav>
+  </div>
+</section>
+{% endblock %}

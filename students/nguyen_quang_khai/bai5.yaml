@@ -1,0 +1,48 @@
+# Bài 5 — báo cáo quá trình làm việc và sản xuất video của Nhóm 5 (giữ nguyên văn).
+video_id: P_JmcUhzdW0
+video_url: https://youtu.be/P_JmcUhzdW0?si=ktGkaITIqP8LW5Ym
+report_title: Báo cáo quá trình làm việc và sản xuất video
+project_name: Ứng dụng công nghệ số và AI xây dựng bài giảng môn Âm nhạc cho học sinh tiểu học.
+group: Nhóm 5
+members:
+  - { name: Đỗ Đức Khải, id: '2552210023', lead: true, role: 'Phân công công việc chính, lên ý tưởng, đóng góp, chỉnh sửa nội dung video, quay video.' }
+  - { name: Nguyễn Quang Khải, id: '2552210079', me: true, role: 'Lên kịch bản, phụ trách nội dung chính, lên khung cho video, quay video.' }
+  - { name: Lê Thị Thu Hương, id: '2552210129', role: 'Tham gia đóng góp ý kiến kịch bản, chuẩn bị nội dung slide, dựng hình, quay video.' }
+  - { name: Đào Vi Linh, id: '2552210357', role: 'Tham gia đóng góp xây dựng kịch bản, chuẩn bị nội dung trò chơi, dựng hình, quay video.' }
+  - { name: Nguyễn Thu Hương, id: '2552210020', role: 'Lên khung giáo án, edit video, viết báo cáo, gửi gmail, quay video.' }
+roles_note: Đảm bảo tất cả các thành viên đều tham gia vào các khâu lên kịch bản, quay, dựng phim và thuyết trình.
+process_intro: Nhóm đã triển khai thực hiện dự án theo quy trình các bước sau
+steps:
+  - title: Lên ý tưởng và viết kịch bản
+    from: 12/10/2026
+    to: 15/10/2026
+    items:
+      - Toàn bộ các thành viên đã họp bàn, đóng góp ý tưởng để thống nhất chủ đề cốt lõi của video.
+      - Cùng nhau xây dựng kịch bản chi tiết (chia phân cảnh, viết lời thoại/ lời bình, phân chia cảnh và địa điểm quay).
+  - title: Quay video
+    from: 15/10/2026
+    to: 21/10/2026
+    items:
+      - Các thành viên tự chuẩn bị thiết bị, bối cảnh.
+      - Toàn bộ nhóm trực tiếp tham gia diễn xuất và ghi hình theo đúng kịch bản đã duyệt.
+  - title: Dựng video và hậu kỳ
+    from: 21/10/2026
+    to: 24/10/2026
+    items:
+      - Nhóm chuẩn bị nội dung và luyện tập phần thuyết trình. Tất cả các thành viên đều tham gia vào quá trình phân chia nội dung trình bày trước tập thể.
+      - Thành viên phụ trách kỹ thuật dựng phim sơ bản, sau đó cả nhóm cùng ngồi lại xem xét, góp ý chỉnh sửa về âm thanh, tốc độ khung hình, phụ đề và hiệu ứng chuyển cảnh.
+tools_intro: Để hoàn thành sản phẩm video và quá trình làm việc nhóm, chúng tôi đã sử dụng các công cụ sau
+tools:
+  - { k: 'Lên ý tưởng & Quản lý công việc', v: 'Google Docs, Google Drive, Zalo (trao đổi và lưu trữ tài liệu chung).' }
+  - { k: Các công cụ AI, v: 'Chat GPT, Gemini, Google Flow.' }
+  - { k: 'Dựng video & Chỉnh sửa hậu kỳ', v: 'CapCut, Canva (để thiết kế tiêu đề/ intro)' }
+  - { k: Thuyết trình, v: Microsoft PowerPoint / Google Slides. }
+troubles_intro: Trong quá trình thực hiện, nhóm đã đối mặt và vượt qua một số thử thách sau
+troubles:
+  - title: Về thời gian và lịch trình chung
+    problem: Các thành viên có lịch học cá nhân khác nhau nên việc sắp xếp thời gian để cùng tề tựu quay phim gặp nhiều trở ngại ban đầu.
+    fix: Lập bảng thời gian biểu trống chung trong tuần, tận dụng các ngày cuối tuần hoặc cuối các buổi học để tiến hành bàn luận, họp online.
+  - title: Về kỹ thuật quay và dựng phim
+    problem: Chất lượng âm thanh ở một số cảnh quay bị lẫn tạp âm gió và tiếng ồn xung quanh; hiệu ứng chuyển cảnh ban đầu chưa thực sự mượt mà. Tạo video bằng AI không đồng nhất, thiếu token.
+    fix: Nhóm đã tiến hành thu âm lại một số đoạn lời thoại trong phòng kín và sử dụng phần mềm lọc tạp âm; thành viên phụ trách hậu kỳ đã tìm hiểu thêm các hướng dẫn trực tuyến để chỉnh sửa lại hiệu ứng cho chuyên nghiệp hơn. Tạo lại video nhiều lần, chỉnh sửa prompt để ra được thành quả ưng ý.
+closing: Báo cáo được cam kết tuân thủ đúng yêu cầu phân công đều các khâu và đảm bảo độ dài súc tích trong giới hạn cho phép.

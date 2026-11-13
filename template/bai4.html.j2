@@ -1,0 +1,14 @@
+<p class="product-lead">{{ d.group }} gồm năm thành viên, cùng thực hiện dự án “{{ d.project_name }}”.</p>
+<ol class="band">
+  {% for m in d.members %}
+  <li{% if m.me %} class="is-me"{% endif %}><span class="band-name">{{ m.name }}</span>{% if m.lead %}<span class="band-tag">nhóm trưởng</span>{% endif %}{% if m.me %}<span class="band-tag">chủ portfolio</span>{% endif %}</li>
+  {% endfor %}
+</ol>
+<div class="collab">
+  <h3>Công cụ hợp tác trực tuyến của nhóm</h3>
+  <ul class="collab-list">
+    {% for t in d.collab_tools %}<li><b>{{ t.name }}</b><span>{{ t.use }}</span></li>{% endfor %}
+  </ul>
+  <p>{{ d.collab_note }}</p>
+  <p class="collab-link">Phân công chi tiết, tiến độ và sản phẩm của nhóm nằm ở <a href="bai-5.html">Bài 5: báo cáo quá trình làm việc và video</a>.</p>
+</div>

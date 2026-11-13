@@ -1,0 +1,25 @@
+<p class="product-lead">{{ d.principles_title }}. Năm nguyên tắc, xếp như năm dòng kẻ của một khuông nhạc.</p>
+<ol class="staff">
+  {% for p in d.principles %}
+  <li class="staff-line">
+    <div class="staff-head"><span class="staff-n">{{ loop.index }}</span><h3>{{ p.name }} <em>({{ p.en }})</em></h3></div>
+    <dl>
+      <div><dt>Cam kết</dt><dd>{{ p.commit }}</dd></div>
+      <div><dt>Hành động thực tế</dt><dd>{{ p.action }}</dd></div>
+    </dl>
+  </li>
+  {% endfor %}
+</ol>
+
+<div class="frame">
+  <h3>Khung lý thuyết làm nền</h3>
+  <p class="frame-lead">Bộ nguyên tắc trên dựa vào mục {{ d.framework_title }} của học phần. Dưới đây là bản tóm tắt; toàn văn nằm trong tài liệu gốc ở cuối trang.</p>
+  <div class="frame-grid">
+    {% for f in d.framework %}
+    <section>
+      <h4>{{ f.title }}</h4>
+      <dl>{% for it in f['items'] %}<div><dt>{{ it.k }}{% if it.en %} <em>({{ it.en }})</em>{% endif %}</dt><dd>{{ it.v }}</dd></div>{% endfor %}</dl>
+    </section>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,163 @@
+# ============================================================
+#  Portfolio CNS&AI — Nguyễn Quang Khải (Sư phạm Âm nhạc)
+#  Nội dung trang Giới thiệu, thông tin 6 bài tập và trang Tổng kết.
+#  Sản phẩm chi tiết của từng bài nằm ở bai1.yaml … bai6.yaml.
+# ============================================================
+
+name: Nguyễn Quang Khải
+name_lines: [Nguyễn, Quang, Khải]
+student_id: '2552210079'
+major: Sư phạm Âm nhạc
+school: Trường Đại học Sư phạm Nghệ thuật Trung ương
+subject: Nhập môn Công nghệ số và ứng dụng trí tuệ nhân tạo
+subject_code: INF2501
+source_doc: https://docs.google.com/document/d/1Iq28qJ25MGWldX1J94ch0kZWlV_qczewMktmnLjn2NE/edit?usp=sharing
+source_doc_title: Bài tập các chương CNS&AI Quang Khải
+
+quote: Âm nhạc là ngôn ngữ của tâm hồn.
+belief: Tôi tin rằng mỗi cá nhân đều mang trong mình một thanh âm riêng biệt, và sứ mệnh của người làm nghệ thuật – giáo dục là giúp họ tìm thấy tiếng nói đó.
+
+# ---------- Sở thích & năng khiếu ----------
+hobbies_text: Ca hát, biểu diễn sân khấu, chơi nhạc cụ (Guitar, Piano/Organ), nghiên cứu lý thuyết âm nhạc và trải nghiệm các dòng nhạc đa dạng (từ nhạc truyền thống, nhạc cách mạng đến V-pop hiện đại).
+hobbies:
+  - Ca hát
+  - Biểu diễn sân khấu
+  - Guitar
+  - Piano / Organ
+  - Nghiên cứu lý thuyết âm nhạc
+# Ba dòng nhạc Khải nhắc tới; "motif" là tên đoạn nhạc ngắn web tự chơi khi bấm.
+genres:
+  - { name: Nhạc truyền thống, motif: pentatonic, hint: thang năm âm }
+  - { name: Nhạc cách mạng, motif: march, hint: nhịp hành khúc }
+  - { name: V-pop hiện đại, motif: pop, hint: vòng hợp âm vi – IV – I – V }
+
+# ---------- Mục tiêu học tập & định hướng phát triển ----------
+short_term_title: Mục tiêu ngắn hạn
+short_term_note: Trong quá trình học tập
+short_term:
+  - chord: C
+    func: T
+    frets: [-1, 3, 2, 0, 1, 0]
+    title: Vững chuyên môn
+    text: Không ngừng trau dồi kiến thức lý thuyết âm nhạc, kỹ thuật thanh nhạc và kỹ năng sử dụng nhạc cụ đệm hát.
+  - chord: F
+    func: S
+    frets: [1, 3, 3, 2, 1, 1]
+    title: Chắc nghiệp vụ
+    text: Rèn luyện kỹ năng sư phạm, phương pháp truyền đạt sáng tạo và ứng dụng công nghệ số vào thiết kế bài giảng âm nhạc sinh động.
+  - chord: G
+    func: D
+    frets: [3, 2, 0, 0, 0, 3]
+    title: Tích lũy kinh nghiệm thực tiễn
+    text: Tích cực tham gia các hoạt động biểu diễn văn nghệ, câu lạc bộ âm nhạc để rèn luyện bản lĩnh sân khấu và khả năng làm chủ đám đông.
+long_term_title: Định hướng phát triển dài hạn
+long_term:
+  - title: Trở thành một giáo viên Âm nhạc truyền cảm hứng
+    text: Đem âm nhạc đến gần hơn với học sinh, đặc biệt là các em nhỏ; giúp các em khám phá "ngôn ngữ riêng" của tâm hồn, phát triển tư duy thẩm mỹ và nuôi dưỡng tình yêu nghệ thuật một cách tự nhiên nhất.
+  - title: Song hành giữa giảng dạy và biểu diễn
+    text: Giữ vững ngọn lửa đam mê sân khấu, dùng chính tiếng hát và khả năng biểu diễn của bản thân làm cầu nối trực quan, sinh động để lan tỏa năng lượng tích cực đến cộng đồng và học trò.
+
+# ---------- Mục tiêu của Portfolio ----------
+portfolio_intro: Cuốn Portfolio này được xây dựng nhằm mục đích
+portfolio_goals:
+  - title: Hệ thống hóa và lưu trữ
+    text: Tổng hợp toàn bộ các sản phẩm học tập, bài thu hoạch, giáo án điện tử và các tư liệu biểu diễn cá nhân một cách khoa học, giúp dễ dàng tra cứu, theo dõi sự tiến bộ của bản thân qua từng giai đoạn.
+  - title: Thể hiện năng lực số
+    text: Minh chứng cho khả năng ứng dụng công nghệ thông tin và các công cụ kỹ thuật số vào việc học tập, sáng tạo nội dung và thiết kế dạy học âm nhạc hiện đại.
+  - title: Kết nối và chia sẻ
+    text: Tạo ra một hồ sơ năng lực trực quan, chuyên nghiệp để thuận tiện chia sẻ với giảng viên, bạn bè cũng như phục vụ cho các cơ hội nghề nghiệp và hoạt động nghệ thuật trong tương lai.
+
+# ---------- 6 bài tập — mỗi bài ứng với một dây đàn guitar (dây 6 → dây 1) ----------
+projects:
+  - id: 1
+    string: 6
+    note: Mi
+    section: '1.4'
+    chapter: Chương 1 – Máy tính và các thiết bị ngoại vi
+    title: Thao tác cơ bản với tệp tin và thư mục
+    short: Mười hai thao tác với tệp và thư mục trên Windows, mỗi bước một ảnh chụp màn hình.
+    objective: Thực hành trọn một vòng thao tác với tệp tin và thư mục bằng File Explorer trên Windows — tạo, đổi tên, sao chép, di chuyển, xóa, xóa vĩnh viễn và khôi phục từ Thùng rác.
+    process:
+      - Làm lần lượt 12 thao tác theo đề bài trên ổ DATA (D:), trong thư mục ThucHanh_nguyenquangkhai.
+      - Mỗi thao tác chụp lại màn hình và khoanh đỏ đúng vị trí cần bấm để người xem làm theo được.
+      - Kiểm tra kết quả sau từng bước — tệp đã đổi tên, đã có bản sao, đã nằm trong Thùng rác hay đã được khôi phục.
+    tools: File Explorer trên Windows 11, Thùng rác (Recycle Bin), công cụ chụp và đánh dấu ảnh màn hình
+  - id: 2
+    string: 5
+    note: La
+    section: '2.4'
+    chapter: Chương 2 – Khai thác dữ liệu và thông tin
+    title: Tìm kiếm và đánh giá thông tin học thuật
+    short: Mười nguồn tài liệu về chuyển đổi số trong dạy học Âm nhạc, kèm đánh giá độ tin cậy.
+    objective: Chọn một chủ đề gắn với ngành Sư phạm Âm nhạc, tìm tài liệu học thuật từ đủ bốn loại nguồn và đánh giá độ tin cậy của từng nguồn.
+    process:
+      - Chọn chủ đề, nêu lý do, đặt từ khóa và giới hạn thời gian công bố.
+      - Tìm tài liệu ở bốn loại nguồn — cơ sở dữ liệu học thuật, tạp chí chuyên ngành, sách và giáo trình, nguồn mở trên Internet.
+      - Chọn 10 nguồn, ghi tài liệu tham khảo theo chuẩn Harvard và nhận xét độ tin cậy của từng nguồn.
+    tools: Google Scholar, cơ sở dữ liệu thư viện trường, các tạp chí khoa học chuyên ngành, chuẩn trích dẫn Harvard
+  - id: 3
+    string: 4
+    note: Rê
+    section: '3.4'
+    chapter: Chương 3 – Tổng quan về trí tuệ nhân tạo
+    title: Viết prompt hiệu quả cho các tác vụ học tập
+    short: Ba tác vụ về Lý thuyết âm nhạc và Hòa thanh, mỗi tác vụ ba mức prompt chạy trên Gemini.
+    objective: So sánh ba mức prompt — cơ bản, cải tiến, nâng cao — trên ba tác vụ học tập của môn Lý thuyết âm nhạc và Hòa thanh, rồi rút ra cách viết prompt cho việc học.
+    process:
+      - Chọn ba tác vụ — tóm tắt giáo trình Lý thuyết âm nhạc cơ bản, giải thích hợp âm bốn sáu kết, tạo bộ câu hỏi ôn tập Hòa thanh.
+      - Viết ba phiên bản prompt cho mỗi tác vụ và chạy cả chín prompt trên Gemini, chụp lại màn hình kết quả.
+      - So sánh kết quả giữa ba mức, phân tích nguyên nhân, nêu hạn chế và tổng kết thành nguyên tắc viết prompt.
+    tools: Gemini (gemini.google.com), giáo trình Lý thuyết âm nhạc cơ bản
+    ai_use: Gemini là công cụ được thử nghiệm với cả chín prompt.
+  - id: 4
+    string: 3
+    note: Son
+    section: '4.4'
+    chapter: Chương 4 – Giao tiếp và hợp tác trong môi trường số
+    title: Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm
+    short: Nhóm 5 người cùng làm một dự án chung trên các công cụ trực tuyến.
+    objective: Cùng nhóm năm thành viên dùng các công cụ hợp tác trực tuyến để thực hiện một dự án chung của học phần.
+    process:
+      - Lập nhóm năm thành viên, thống nhất chủ đề và phân công.
+      - Trao đổi và lưu trữ tài liệu chung trên các công cụ trực tuyến, họp online khi lịch học lệch nhau.
+    tools: Google Docs, Google Drive, Zalo
+  - id: 5
+    string: 2
+    note: Si
+    section: '5.4'
+    chapter: Chương 5 – Sáng tạo nội dung số
+    title: Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung
+    short: Video của Nhóm 5 về dùng công nghệ số và AI xây dựng bài giảng Âm nhạc tiểu học.
+    objective: Cùng Nhóm 5 dùng công nghệ số và AI tạo sinh để làm một video về xây dựng bài giảng môn Âm nhạc cho học sinh tiểu học, kèm báo cáo quá trình làm việc.
+    process:
+      - Lên ý tưởng và viết kịch bản (12/10 – 15/10/2026).
+      - Quay video (15/10 – 21/10/2026).
+      - Dựng video và hậu kỳ (21/10 – 24/10/2026).
+    tools: Google Docs, Google Drive, Zalo, CapCut, Canva, Microsoft PowerPoint / Google Slides
+    ai_use: Chat GPT, Gemini, Google Flow.
+  - id: 6
+    string: 1
+    note: Mi cao
+    section: '6.4'
+    chapter: Chương 6 – An toàn và liêm chính học thuật trong môi trường số
+    title: Sử dụng AI có trách nhiệm trong học tập và nghiên cứu
+    short: Bộ năm nguyên tắc cá nhân về dùng AI, dựng trên khung lý thuyết mục 6.4.
+    objective: Từ khung lý thuyết mục 6.4 của học phần, xây dựng bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm trong học tập và nghiên cứu.
+    process:
+      - Đọc khung lý thuyết về đạo đức, trách nhiệm và pháp luật khi sử dụng AI và nội dung số.
+      - Rút ra năm nguyên tắc cá nhân, mỗi nguyên tắc gồm một cam kết và một hành động thực tế.
+    tools: Tài liệu học phần (mục 6.4), chuẩn trích dẫn Harvard cho nội dung do AI tạo ra
+
+# ---------- Tổng kết ----------
+conclusion:
+  experience: Sáu bài tập đi từ việc nhỏ nhất là sắp xếp tệp tin cho gọn, đến tìm và đánh giá tài liệu, viết prompt, làm việc nhóm, làm video có AI hỗ trợ và tự đặt nguyên tắc dùng AI. Bài nào cũng quay về âm nhạc — tài liệu về chuyển đổi số trong dạy học Âm nhạc, hợp âm bốn sáu kết của môn Hòa thanh, bài giảng Âm nhạc cho học sinh tiểu học. Công nghệ số vì thế không đứng ngoài chuyên ngành mà trở thành một phần của việc học và việc dạy nhạc.
+  key_skills:
+    - Quản lý tệp tin và thư mục trên Windows — tạo, đổi tên, sao chép, di chuyển, xóa và khôi phục.
+    - Tìm tài liệu học thuật từ nhiều loại nguồn, đánh giá độ tin cậy và ghi tài liệu tham khảo theo chuẩn Harvard.
+    - Viết prompt có mục tiêu, bối cảnh, đối tượng, tiêu chí và định dạng đầu ra rõ ràng.
+    - Làm việc nhóm trên Google Docs, Google Drive và Zalo.
+    - Lên kịch bản và cùng nhóm sản xuất video có AI hỗ trợ.
+    - Dùng AI minh bạch, có kiểm chứng và có trách nhiệm.
+  highlight: Sản phẩm nổi bật là video "Ứng dụng công nghệ số và AI xây dựng bài giảng môn Âm nhạc cho học sinh tiểu học" của Nhóm 5, trong đó tôi lên kịch bản, phụ trách nội dung chính, lên khung cho video và tham gia quay.
+  challenge: Lịch học của các thành viên khác nhau nên khó hẹn quay chung; video tạo bằng AI chưa đồng nhất và thiếu token; kết quả AI ở những môn cần chính xác như Hòa thanh vẫn phải đối chiếu với giáo trình. Nhóm lập thời gian biểu chung và họp online, tạo lại video nhiều lần và chỉnh prompt cho tới khi ưng ý.
+  future: Tiếp tục trau dồi chuyên môn và nghiệp vụ, ứng dụng công nghệ số vào thiết kế bài giảng âm nhạc sinh động, hướng tới trở thành một giáo viên Âm nhạc truyền cảm hứng và song hành giữa giảng dạy với biểu diễn.

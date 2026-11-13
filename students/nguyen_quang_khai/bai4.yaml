@@ -1,0 +1,18 @@
+# Bài 4 — bài làm của Khải ở chương này là bảng thành viên nhóm.
+# Vai trò và công cụ lấy từ báo cáo dự án nhóm ở chương 5 (cùng Nhóm 5).
+group: Nhóm 5
+members:
+  - { name: Đỗ Đức Khải, lead: true }
+  - { name: Nguyễn Quang Khải, me: true }
+  - { name: Lê Thị Thu Hương }
+  - { name: Đào Vi Linh }
+  - { name: Nguyễn Thu Hương }
+project_name: Ứng dụng công nghệ số và AI xây dựng bài giảng môn Âm nhạc cho học sinh tiểu học
+collab_tools:
+  - name: Google Docs
+    use: Lên ý tưởng và quản lý công việc
+  - name: Google Drive
+    use: Lưu trữ tài liệu chung
+  - name: Zalo
+    use: Trao đổi trong nhóm
+collab_note: Các thành viên có lịch học cá nhân khác nhau, nên nhóm lập bảng thời gian biểu trống chung trong tuần, tận dụng các ngày cuối tuần hoặc cuối các buổi học để bàn luận và họp online.

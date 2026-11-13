@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ name }} — Portfolio {{ subject_code }}{% endblock %}</title>
+<meta name="description" content="Portfolio học phần {{ subject }} của {{ name }}, sinh viên {{ major }}, {{ school }}.">
+<meta name="theme-color" content="#0e1a36">
+<meta property="og:title" content="{{ name }} — Portfolio {{ subject_code }}">
+<meta property="og:description" content="{{ quote }}">
+<meta property="og:image" content="assets/img/photos/san-khau.webp">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/big-shoulders-display-vietnamese-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="page-{{ page }}">
+<a class="skip" href="#main">Bỏ qua điều hướng</a>
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <p class="foot-name">{{ name }}</p>
+    <p class="foot-info">{{ major }}, {{ school }}<br>Mã sinh viên {{ student_id }}<br>Portfolio học phần {{ subject }} ({{ subject_code }})</p>
+    <p class="foot-note">Website được dựng với sự hỗ trợ của trợ lý AI. Nội dung các bài tập do {{ name }} thực hiện; bản gốc nằm trong <a href="{{ source_doc }}" target="_blank" rel="noopener">tài liệu Google Docs</a>.</p>
+  </div>
+</footer>
+
+{# Điều hướng: một "pedalboard" ghim ở đáy màn hình #}
+<nav class="dock" aria-label="Điều hướng chính">
+  <a class="pedal" href="index.html"{% if page == 'home' %} aria-current="page"{% endif %}><i class="led"></i><span>Giới thiệu</span></a>
+  <a class="pedal" href="projects.html"{% if page == 'projects' %} aria-current="page"{% endif %}><i class="led"></i><span>Bài tập</span></a>
+  <a class="pedal" href="conclusion.html"{% if page == 'conclusion' %} aria-current="page"{% endif %}><i class="led"></i><span>Tổng kết</span></a>
+  <button class="pedal pedal-sound" type="button" data-sound-toggle aria-pressed="true"><i class="led"></i><span data-sound-label>Tiếng đàn bật</span></button>
+</nav>
+
+<div class="lightbox" data-lightbox hidden>
+  <button class="lb-close" type="button" data-lb-close aria-label="Đóng ảnh">Đóng</button>
+  <button class="lb-nav lb-prev" type="button" data-lb-prev aria-label="Ảnh trước">‹</button>
+  <figure><img alt="" data-lb-img><figcaption data-lb-cap></figcaption></figure>
+  <button class="lb-nav lb-next" type="button" data-lb-next aria-label="Ảnh sau">›</button>
+</div>
+
+<script src="assets/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+# Bài 6 — "principles" là bộ nguyên tắc cá nhân của Khải (giữ nguyên văn).
+# "framework" là phần tóm tắt khung lý thuyết mục 6.4 của học phần mà bài làm dựa vào;
+# toàn văn nằm trong tài liệu gốc (liên kết ở cuối trang).
+framework_title: '6.4. Đạo đức, trách nhiệm và pháp luật khi sử dụng AI và nội dung số'
+framework:
+  - title: AI tạo sinh và những thách thức với liêm chính học thuật
+    items:
+      - { k: Đạo văn do AI hỗ trợ, en: AI-assisted Plagiarism, v: 'Lạm dụng AI để diễn giải lại hoặc tạo nội dung từ nguồn có sẵn mà người dùng không thực sự hiểu, không có đóng góp tư duy đáng kể.' }
+      - { k: '"Ảo giác" của AI', en: AI Hallucinations, v: 'AI có thể tự tin bịa ra sự kiện, số liệu, cả trích dẫn tới bài báo không tồn tại; dùng mà không kiểm chứng dễ dẫn đến sai sót nghiêm trọng.' }
+      - { k: Thiên kiến trong AI, en: AI Bias, v: 'Dữ liệu huấn luyện mang định kiến về giới tính, chủng tộc, văn hóa thì AI sẽ tái tạo lại chính những định kiến đó.' }
+  - title: Khung đạo đức và hướng dẫn sử dụng AI có trách nhiệm
+    items:
+      - { k: Minh bạch, en: Transparency, v: 'Công khai đã dùng công cụ AI nào và dùng vào việc gì.' }
+      - { k: Trách nhiệm, en: Accountability, v: 'Người học, không phải AI, chịu trách nhiệm cuối cùng về nội dung bài làm.' }
+      - { k: Trung thực và nguyên bản, en: Honesty and Originality, v: 'AI hỗ trợ tư duy chứ không thay thế tư duy.' }
+      - { k: Giám sát của con người, en: Human Oversight, v: 'Luôn xem xét, đánh giá, chỉnh sửa kết quả từ AI.' }
+      - { k: Bảo vệ dữ liệu, en: Data Privacy, v: 'Cẩn trọng với thông tin nhập vào các công cụ AI.' }
+  - title: Trích dẫn nội dung do AI tạo ra theo chuẩn Harvard
+    items:
+      - { k: Văn bản có URL chia sẻ được, v: 'Tên nhà phát triển AI (Năm). Tên công cụ AI: Phản hồi cho [Tên người dùng], Ngày Tháng. Có sẵn tại: URL.' }
+      - { k: Văn bản không có URL, v: 'Tên nhà phát triển AI (Năm). Tên công cụ AI: Phản hồi cho [Tên người dùng], Ngày Tháng.' }
+      - { k: Hình ảnh do AI tạo, v: 'Tên nhà phát triển AI (Năm). [Mô tả prompt đã sử dụng để tạo ảnh]. [Nghệ thuật số].' }
+  - title: Quy định pháp luật cơ bản tại Việt Nam
+    items:
+      - { k: Luật An ninh mạng 2018, v: 'Nêu các hành vi bị nghiêm cấm trên không gian mạng; người dùng chịu trách nhiệm về nội dung mình đăng tải.' }
+      - { k: Nghị định 13/2023/NĐ-CP, v: 'Bảo vệ dữ liệu cá nhân — tổ chức phải có sự đồng ý rõ ràng khi thu thập, xử lý dữ liệu của cá nhân.' }
+      - { k: Luật Sở hữu trí tuệ, v: 'Bảo vệ quyền tác giả với các công trình sáng tạo, kể cả nội dung số trên Internet.' }
+      - { k: Luật Bảo vệ dữ liệu cá nhân 2025, v: 'Luật số 91/2025/QH15, hiệu lực từ 01/01/2026 — khuôn khổ pháp lý về dữ liệu cá nhân, quyền và nghĩa vụ của các bên.' }
+principles_title: Bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm
+principles:
+  - name: Nguyên tắc Minh bạch
+    en: Transparency
+    commit: 'Luôn công khai và rõ ràng về việc đã sử dụng công cụ AI nào (ví dụ: ChatGPT, Gemini) và sử dụng chúng vào mục đích cụ thể nào trong sản phẩm học thuật của mình. Tuyệt đối không che giấu việc sử dụng AI.'
+    action: Ghi chú rõ ràng trong bài làm hoặc thực hiện trích dẫn đầy đủ theo đúng chuẩn quy định (như chuẩn Harvard) khi có sử dụng nội dung do AI hỗ trợ.
+  - name: Nguyên tắc Trách nhiệm cá nhân
+    en: Accountability
+    commit: Bản thân người học là người chịu trách nhiệm cuối cùng đối với toàn bộ tính chính xác, logic và nội dung của sản phẩm hoàn thiện, không đổ lỗi cho AI.
+    action: Luôn kiểm tra, xác thực kỹ lưỡng mọi thông tin, số liệu do AI tạo ra để phòng tránh rủi ro từ hiện tượng "ảo giác" của AI (AI Hallucinations) hoặc các thông tin sai lệch.
+  - name: Nguyên tắc Đề cao tư duy nguyên bản và hỗ trợ tư duy
+    en: Honesty & Originality
+    commit: Sử dụng AI như một trợ lý đắc lực nhằm hỗ trợ quá trình tư duy (như động não ý tưởng, tóm tắt tài liệu phức tạp, kiểm tra ngữ pháp), tuyệt đối không lạm dụng AI để thay thế hoàn toàn quá trình lao động trí tuệ hay viết trọn gói bài luận.
+    action: Phân định rõ ranh giới giữa việc sử dụng công cụ hỗ trợ và các hành vi vi phạm liêm chính học thuật như đạo văn do AI hỗ trợ (AI-assisted Plagiarism) hay gian lận hợp đồng (Contract Cheating).
+  - name: Nguyên tắc Giám sát và Tư duy phản biện
+    en: Human Oversight
+    commit: Không bao giờ sao chép và dán kết quả từ AI một cách máy móc, mù quáng.
+    action: Duy trì tư duy phản biện thường trực; chủ động xem xét, đánh giá, biên tập và điều chỉnh lại mọi nội dung do AI cung cấp để đảm bảo phù hợp với ngữ cảnh học tập và nghiên cứu thực tế.
+  - name: Nguyên tắc Bảo vệ dữ liệu và quyền riêng tư
+    en: Data Privacy
+    commit: Thận trọng tối đa với các dữ liệu đưa lên không gian mạng và các công cụ chatbot công khai.
+    action: Tránh nhập các thông tin cá nhân định danh, dữ liệu nhạy cảm, hoặc các tài liệu nghiên cứu độc quyền chưa được công bố vào các hệ thống AI công cộng nhằm ngăn ngừa rủi ro lộ lọt thông tin.

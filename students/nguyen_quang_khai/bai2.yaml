@@ -1,0 +1,106 @@
+# Bài 2 — giữ nguyên nội dung bài làm của Khải. Các đường dẫn bọc qua google.com/search
+# trong bản gốc đã được gỡ về địa chỉ đích.
+student_line: 'Ngành học: Sư phạm Âm nhạc · Họ và tên sinh viên: Nguyễn Quang Khải · Mã sinh viên: 2552210079'
+topic: Ứng dụng công nghệ thông tin và chuyển đổi số trong giảng dạy môn Âm nhạc tại Việt Nam
+reason: Chuyển đổi số trong giáo dục đang là một xu thế tất yếu. Việc ứng dụng các phần mềm, nền tảng số vào đặc thù môn Âm nhạc (xướng âm, luyện thanh, nhạc cụ) là một thách thức lớn mang tính thời sự đối với giáo viên Sư phạm âm nhạc.
+keywords:
+  - Ứng dụng công nghệ thông tin trong dạy học âm nhạc
+  - Chuyển đổi số sư phạm âm nhạc
+  - Phần mềm dạy học âm nhạc (MuseScore, EarMaster)
+  - Music education technology
+time_limit: Ưu tiên tài liệu mới xuất bản trong 5 năm trở lại đây (2020 - 2026) để đảm bảo tính cập nhật của công nghệ.
+search_intro: Quá trình thu thập tài liệu được tiến hành từ đủ 4 nguồn theo đúng yêu cầu
+channels:
+  - name: Cơ sở dữ liệu học thuật
+    text: Sử dụng Google Scholar và CSDL thư viện trường để tìm kiếm các bài nghiên cứu tiếng Việt và tiếng Anh.
+  - name: Tạp chí khoa học chuyên ngành
+    text: 'Khai thác các bài báo từ *Tạp chí Tâm lý Giáo dục*, *Tạp chí Khoa học ĐH Sư phạm*, *Tạp chí Khoa học ĐH Hồng Đức*.'
+  - name: Sách chuyên khảo / Giáo trình
+    text: Khai thác tài liệu bồi dưỡng từ Nhà xuất bản Giáo dục Việt Nam và các trường Đại học Sư phạm.
+  - name: Nguồn mở trên Internet
+    text: Các báo cáo sáng kiến kinh nghiệm cấp cơ sở, chuyên đề thực tập của giáo viên phổ thông thực hành.
+types:
+  bao: Bài báo khoa học
+  sach: Sách và giáo trình
+  mo: Nguồn mở
+sources:
+  - n: 1
+    type: bao
+    kind: Bài báo khoa học
+    year: 2026
+    title: Ứng dụng phần mềm MuseScore, EarMaster và Solfeggio trong dạy đọc nhạc
+    ref: "Lê Thị Hồng Hải (2026) 'Ứng dụng phần mềm MuseScore, EarMaster và Solfeggio trong dạy đọc nhạc', *Tạp chí Khoa học Trường Đại học Hồng Đức*, 83, tr. 6-10."
+    url: https://hdujs.edu.vn/index.php/hdujs/article/download/913/775
+    review: Tác giả là giảng viên ĐH; xuất bản trên Tạp chí Khoa học có phản biện; minh chứng thực nghiệm sư phạm rõ ràng, trích dẫn chuẩn, tính cập nhật rất mới (2026).
+  - n: 2
+    type: bao
+    kind: Bài báo khoa học
+    year: 2025
+    title: Ứng dụng chuyển đổi số trong giảng dạy môn Âm nhạc
+    ref: "Trường ĐH Sư phạm TDTT Hà Nội (2025) 'Ứng dụng chuyển đổi số trong giảng dạy môn Âm nhạc', *Tạp chí Khoa học (HUPES)*, 2."
+    url: https://hupes.edu.vn/upload/files/T%E1%BA%A1p%20ch%C3%AD%20s%E1%BB%91%202%20n%C4%83m%202025-9-12.pdf
+    review: Nhóm nghiên cứu từ ĐH Sư phạm; xuất bản năm 2025; phương pháp khảo sát thực trạng bám sát thực tế, hệ thống tài liệu tham khảo phong phú.
+  - n: 3
+    type: bao
+    kind: Bài báo khoa học
+    year: 2024
+    title: Tổng quan nghiên cứu ứng dụng CNTT trong dạy học âm nhạc
+    ref: "Tạp chí Tâm lý Giáo dục (2024) 'Tổng quan nghiên cứu ứng dụng công nghệ thông tin trong dạy học', *Tạp chí Tâm lý - Giáo dục*, (Tháng 5), tr. 19-23."
+    url: https://tamlygiaoduc.com.vn/wp-content/uploads/2024/05/19-23.pdf
+    review: Tạp chí chuyên ngành uy tín; sử dụng phương pháp tổng quan tài liệu (Literature review) bài bản; cập nhật xu thế 4.0 mới nhất.
+  - n: 4
+    type: bao
+    kind: Bài báo khoa học
+    year: 2022
+    title: Phương tiện dạy học âm nhạc thời 4.0
+    ref: "Lương Minh Tân (2022) 'Phương tiện dạy học âm nhạc thời 4.0', *Tạp chí Giáo dục Nghệ thuật*, 42, tr. 108-111."
+    url: https://scholar.google.com/scholar?q=Ph%C6%B0%C6%A1ng+ti%E1%BB%87n+d%E1%BA%A1y+h%E1%BB%8Dc+%C3%A2m+nh%E1%BA%A1c+th%E1%BB%9Di+4.0
+    url_label: Tìm trên Google Scholar
+    review: Tác giả là chuyên gia sư phạm nghệ thuật; đăng trên Tạp chí GD Nghệ thuật; phân tích lý luận chặt chẽ. Dù xuất bản 2022 nhưng kiến thức nền tảng vững chắc.
+  - n: 5
+    type: bao
+    kind: Bài báo khoa học
+    year: 2025
+    title: Dạy học âm nhạc trực tuyến tại Trường ĐH SP Nghệ thuật TW
+    ref: "Lương Minh Tân và Nguyễn Thị Tố Mai (2025) 'Dạy học âm nhạc trực tuyến tại Trường Đại học Sư phạm Nghệ thuật Trung ương', *Tạp chí Khoa học Trường Đại học Sư phạm*."
+    review: Tác giả từ trường trọng điểm; đăng tạp chí khoa học (2025); sử dụng điều tra xã hội học và thống kê số liệu chuẩn mực.
+  - n: 6
+    type: sach
+    kind: Giáo trình / Sách hướng dẫn
+    year: 2020
+    title: Tài liệu tập huấn tổ chức thực hiện dạy học SGK Âm nhạc mới
+    ref: "Bộ Giáo dục và Đào tạo - NXB Giáo dục Việt Nam (2020) *Tài liệu tập huấn tổ chức thực hiện dạy học theo sách giáo khoa mới môn Âm nhạc lớp 1*. Hà Nội: NXB Giáo dục VN."
+    url: https://sachdientu.sachthietbigiaoduc.vn/upload/tai-lieu-tap-huan-sgk-lop-1/am-nhac/tai-lieu-tap-huan-giao-vien-am-nhac-1.pdf
+    review: Hội đồng biên soạn SGK Quốc gia thực hiện; NXB Giáo dục; nền tảng lý luận bám sát CT GDPT 2018 (2020), trích dẫn lý thuyết quốc tế (Kodaly, Orff).
+  - n: 7
+    type: sach
+    kind: Giáo trình
+    year: 2024
+    title: Dạy học môn âm nhạc cho sinh viên ngành GD mầm non
+    ref: "Khoa Giáo dục Mầm non (2024) *Dạy học môn âm nhạc cho sinh viên ngành Giáo dục mầm non*. Tài liệu nội bộ. Trường Đại học Quảng Nam & Trường ĐHSP Nghệ thuật Trung Ương."
+    url: https://spnttw.edu.vn/wp-content/uploads/2024/11/1.honghai.pdf
+    review: Tài liệu lưu hành nội bộ cấp trường (2024); kết hợp tốt lý luận và thực tiễn chuyên ngành nhưng trích dẫn chủ yếu là sách trong nước.
+  - n: 8
+    type: sach
+    kind: Sách chuyên khảo
+    year: 2014
+    title: 'Music learning today: Digital pedagogy'
+    ref: "Bauer, W. I. (2014) *Music learning today: Digital pedagogy for creating, performing, and responding to music*. 1st edn. Oxford: Oxford University Press."
+    url: https://books.google.com/books?id=y9fNBAAAQBAJ
+    review: Tác giả quốc tế hàng đầu; xuất bản bởi Oxford University Press cực kỳ uy tín; phương pháp luận chuẩn quốc tế.
+  - n: 9
+    type: mo
+    kind: Nguồn mở Internet
+    year: 2026
+    title: 'SKKN: Một số biện pháp dạy học Âm nhạc lớp 4 theo hướng phát triển năng lực'
+    ref: "Trần Thị Ánh (2026) *Một số biện pháp dạy học Âm nhạc lớp 4 theo hướng phát triển năng lực*. Sáng kiến kinh nghiệm cấp trường. Trường Tiểu học Thanh Xuân Nam, Hà Nội."
+    url: https://sqhx-hanoi.mediacdn.vn/91579363132710912/2026/7/8/12txn-tran-thi-anh-gv-am-nhac-1783499255368660281897.pdf
+    review: Sáng kiến kinh nghiệm của giáo viên trực tiếp giảng dạy (2026); tính ứng dụng thực tiễn cao nhưng thiếu khắt khe về phương pháp nghiên cứu, ít trích dẫn.
+  - n: 10
+    type: mo
+    kind: Nguồn mở CSDL (Google Scholar)
+    year: 2021
+    title: Ứng dụng công nghệ âm nhạc máy tính trong giảng dạy
+    ref: "Wang, L. (2021) 'Application of Computer Music Technology in Music Teaching', *Journal of Physics: Conference Series*."
+    url: https://iopscience.iop.org/article/10.1088/1742-6596/1915/2/022067/pdf
+    review: Nguồn từ hội thảo khoa học quốc tế (2021); phương pháp phân tích định lượng ứng dụng phần mềm minh bạch; lượng trích dẫn cao trên Google Scholar.

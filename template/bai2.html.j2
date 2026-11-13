@@ -1,0 +1,39 @@
+<p class="idline"><span><b>Ngành học:</b> Sư phạm Âm nhạc</span><span><b>Họ và tên sinh viên:</b> {{ name }}</span><span><b>Mã sinh viên:</b> {{ student_id }}</span></p>
+
+<div class="topic">
+  <h3>I. Lựa chọn chủ đề và phạm vi tìm kiếm</h3>
+  <p class="topic-name">“{{ d.topic }}”</p>
+  <dl class="topic-dl">
+    <div><dt>Lý do chọn đề tài</dt><dd>{{ d.reason }}</dd></div>
+    <div><dt>Phạm vi tìm kiếm (từ khóa)</dt><dd><ul class="chips">{% for k in d.keywords %}<li>{{ k }}</li>{% endfor %}</ul></dd></div>
+    <div><dt>Giới hạn thời gian công bố</dt><dd>{{ d.time_limit }}</dd></div>
+  </dl>
+</div>
+
+<div class="channels">
+  <h3>II. Thực hiện tìm kiếm thông tin</h3>
+  <p>{{ d.search_intro }}:</p>
+  <ol class="channels-list">
+    {% for c in d.channels %}<li><b>{{ c.name }}</b><span>{{ c.text | md }}</span></li>{% endfor %}
+  </ol>
+</div>
+
+<div class="sources">
+  <h3>III. Tổng hợp và đánh giá độ tin cậy của các nguồn thông tin</h3>
+  <div class="filter" role="group" aria-label="Lọc theo loại nguồn">
+    <button type="button" class="is-on" data-filter="all">Tất cả ({{ d.sources | length }})</button>
+    {% for key, label in d.types.items() %}
+    <button type="button" data-filter="{{ key }}">{{ label }} ({{ d.sources | selectattr('type', 'equalto', key) | list | length }})</button>
+    {% endfor %}
+  </div>
+  <ol class="source-list">
+    {% for s in d.sources %}
+    <li class="src" data-type="{{ s.type }}">
+      <div class="src-head"><span class="src-n">Nguồn {{ s.n }}</span><span class="src-kind">{{ s.kind }}</span><span class="src-year">{{ s.year }}</span></div>
+      <h4>{{ s.title }}</h4>
+      <p class="src-ref"><b>Tài liệu tham khảo:</b> {{ s.ref | md }}{% if s.url %} Có tại: <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.url_label or 'mở tài liệu' }}</a>{% endif %}</p>
+      <p class="src-review"><b>Đánh giá:</b> {{ s.review }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</div>

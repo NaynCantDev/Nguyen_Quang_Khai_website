@@ -1,0 +1,25 @@
+{% from "_macros.html.j2" import shot %}
+<p class="product-lead">Mười hai thao tác, theo đúng thứ tự đã làm trên máy. Bấm vào ảnh để xem cỡ lớn.</p>
+<ol class="steps">
+  {% for s in d.steps %}
+  <li class="step">
+    <div class="step-text">
+      <h3>{{ s.title }}</h3>
+      {% if s.text %}<p>{{ s.text | md }}</p>{% endif %}
+      {% if s.list %}<ul>{% for it in s.list %}<li>{{ it | md }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+    <div class="step-shots">
+      {% for sh in s.shots %}{{ shot(sh.file, sh.cap, 'bai1', sh.wide) }}{% endfor %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+
+<div class="tree-block">
+  <h3>Cây thư mục sau 12 bước</h3>
+  <ul class="tree">
+    {% for t in d.tree %}
+    <li class="tree-{{ t.kind }}" style="--d: {{ t.depth }}"><code>{{ t.name }}</code>{% if t.note %}<span>{{ t.note }}</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>

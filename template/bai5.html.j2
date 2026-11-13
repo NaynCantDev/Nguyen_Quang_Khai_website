@@ -1,0 +1,51 @@
+<div class="video" data-yt="{{ d.video_id }}">
+  <button type="button" class="video-play" aria-label="Phát video sản phẩm của {{ d.group }} trên YouTube">
+    <img src="https://i.ytimg.com/vi/{{ d.video_id }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+    <span>Phát video</span>
+  </button>
+</div>
+<p class="video-link">Sản phẩm: <a href="{{ d.video_url }}" target="_blank" rel="noopener">xem video trên YouTube</a></p>
+
+<article class="report">
+  <h3>{{ d.report_title }}</h3>
+  <dl class="report-id">
+    <div><dt>Tên dự án</dt><dd>“{{ d.project_name }}”</dd></div>
+    <div><dt>Tên nhóm</dt><dd>{{ d.group }}</dd></div>
+  </dl>
+
+  <h4>I. Phân công nhiệm vụ của từng thành viên</h4>
+  <p class="report-note">{{ d.roles_note }}</p>
+  <div class="table-wrap">
+    <table class="roles">
+      <thead><tr><th>Thành viên</th><th>MSSV</th><th>Nhiệm vụ đảm nhận</th></tr></thead>
+      <tbody>
+        {% for m in d.members %}
+        <tr{% if m.me %} class="is-me"{% endif %}><td>{{ m.name }}{% if m.lead %} <i>(nhóm trưởng)</i>{% endif %}</td><td>{{ m.id }}</td><td>{{ m.role }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <h4>II. Mô tả quá trình làm việc của nhóm</h4>
+  <p>{{ d.process_intro }}:</p>
+  <ol class="timeline">
+    {% for s in d.steps %}
+    <li><p class="tl-date">Từ ngày {{ s.from }} đến ngày {{ s.to }}</p><h5>Bước {{ loop.index }}: {{ s.title }}</h5><ul>{% for it in s['items'] %}<li>{{ it }}</li>{% endfor %}</ul></li>
+    {% endfor %}
+  </ol>
+
+  <h4>III. Các công cụ đã sử dụng</h4>
+  <p>{{ d.tools_intro }}:</p>
+  <dl class="tools-dl">
+    {% for t in d.tools %}<div><dt>{{ t.k }}</dt><dd>{{ t.v }}</dd></div>{% endfor %}
+  </dl>
+
+  <h4>IV. Những khó khăn đã gặp phải và hướng giải quyết</h4>
+  <p>{{ d.troubles_intro }}:</p>
+  <div class="troubles">
+    {% for t in d.troubles %}
+    <div class="trouble"><h5>Khó khăn {{ loop.index }}: {{ t.title }}</h5><p><b>Mô tả:</b> {{ t.problem }}</p><p><b>Hướng giải quyết:</b> {{ t.fix }}</p></div>
+    {% endfor %}
+  </div>
+  <p class="report-note">({{ d.closing }})</p>
+</article>

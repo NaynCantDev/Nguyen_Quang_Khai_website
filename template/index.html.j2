@@ -1,0 +1,111 @@
+{% extends "_base.html.j2" %}
+{% from "_macros.html.j2" import chord_svg, string_rows %}
+{% block main %}
+
+<header class="hero">
+  <div class="hero-top">
+    <p>Portfolio học phần {{ subject_code }}</p>
+    <p>{{ major }}<br>{{ school }}</p>
+  </div>
+
+  <h1 class="hero-name" aria-label="{{ name }}">
+    {% for line in name_lines %}<span>{{ line }}</span>{% endfor %}
+  </h1>
+
+  {# Sáu dây đàn — rê chuột qua hoặc chạm để gảy #}
+  <div class="hero-strings" data-strings aria-hidden="true">
+    {% for n in [6, 5, 4, 3, 2, 1] %}<div class="string" data-string="{{ n }}" data-hz="{{ open_hz[n] }}"></div>{% endfor %}
+  </div>
+
+  <div class="hero-figure">
+    <div class="hero-sun" aria-hidden="true"></div>
+    {{ img('photos/khai-cutout.webp', name, 'hero-cut', lazy=False) }}
+  </div>
+
+  <div class="hero-bottom">
+    <blockquote class="hero-quote">“{{ quote }}”</blockquote>
+    <button class="btn btn-strum" type="button" data-strum>Gảy sáu dây</button>
+  </div>
+</header>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <div class="about-belief">
+      <p class="belief">{{ belief }}</p>
+      <p class="belief-by">{{ name }}, sinh viên {{ major }}</p>
+      <div class="rest">
+        <figure class="rest-a">{{ img('photos/bien-lay-hoi.webp', name ~ ' nhắm mắt đón gió trên bãi đá ven biển') }}</figure>
+        <figure class="rest-b">{{ img('photos/bien-nhin-xa.webp', name ~ ' đứng trên bãi đá nhìn ra biển') }}</figure>
+        <p class="rest-cap">Một dấu lặng giữa hai câu nhạc.</p>
+      </div>
+    </div>
+    <div class="about-side">
+      <h2 class="h-small">Sở thích và năng khiếu</h2>
+      <ul class="hobbies">
+        {% for h in hobbies %}<li>{{ h }}</li>{% endfor %}
+      </ul>
+      <p class="hobbies-text">{{ hobbies_text }}</p>
+      <div class="genres">
+        <p class="genres-lead">Ba dòng nhạc, bấm để nghe một câu dạo</p>
+        <div class="genres-row">
+          {% for g in genres %}
+          <button class="genre" type="button" data-motif="{{ g.motif }}"><b>{{ g.name }}</b><small>{{ g.hint }}</small></button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="goals">
+  <div class="wrap">
+    <h2 class="h-big">Mục tiêu học tập<br>và định hướng phát triển</h2>
+    <div class="goals-head">
+      <h3>{{ short_term_title }}</h3>
+      <p>{{ short_term_note }}. Ba mục tiêu như ba hợp âm chủ, hạ át, át: đủ để đệm trọn một bài hát. Bấm vào để nghe.</p>
+    </div>
+    <div class="chords">
+      {% for g in short_term %}
+      <button class="chord" type="button" data-chord="{{ g.frets | join(',') }}" aria-label="{{ g.title }} — nghe hợp âm {{ g.chord }}">
+        <span class="chord-top"><b class="chord-name">{{ g.chord }}</b><i class="chord-func">{{ g.func }}</i>{{ chord_svg(g.frets) }}</span>
+        <span class="chord-title">{{ g.title }}</span>
+        <span class="chord-text">{{ g.text }}</span>
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="stage">
+  {{ img('photos/san-khau.webp', name ~ ' cầm micro trên sân khấu, bên cạnh là đàn piano và bộ trống', 'stage-photo') }}
+  <div class="wrap stage-inner">
+    <h3 class="stage-title">{{ long_term_title }}</h3>
+    <div class="stage-cols">
+      {% for g in long_term %}
+      <div><h4>{{ g.title }}</h4><p>{{ g.text }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="pgoals">
+  <div class="wrap">
+    <h2 class="h-big">Mục tiêu của Portfolio</h2>
+    <p class="pgoals-lead">{{ portfolio_intro }}:</p>
+    <ul class="pgoals-list">
+      {% for g in portfolio_goals %}
+      <li><h3>{{ g.title }}</h3><p>{{ g.text }}</p></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="six">
+  <div class="wrap">
+    <h2 class="h-big">Sáu dây, sáu bài tập</h2>
+    <p class="six-lead">Mỗi bài tập của học phần ứng với một dây đàn guitar, từ dây 6 trầm nhất đến dây 1 cao nhất.</p>
+    {{ string_rows(projects, false) }}
+    <p class="six-more"><a class="btn btn-ghost" href="conclusion.html">Xem phần tổng kết</a></p>
+  </div>
+</section>
+{% endblock %}
