@@ -8,8 +8,8 @@ Deploy bằng **Netlify** (nối thẳng với repo này): mỗi lần push lên
 - ✅ Trang Giới thiệu: thông tin, sở thích và năng khiếu, mục tiêu học tập, định hướng phát triển, mục tiêu portfolio (giữ nguyên văn lời Khải)
 - ✅ Đủ 6 bài tập theo tài liệu Google Docs "Bài tập các chương CNS&AI Quang Khải", kèm 30 ảnh minh chứng lấy từ tài liệu
 - ✅ Trang Tổng kết (soạn dựa trên nội dung 6 bài và phần định hướng của Khải — nên để Khải đọc lại)
-- ℹ️ Bài 1, 2, 4, 6 chưa có dòng "AI đã sử dụng" vì bài làm gốc không ghi; thêm `ai_use:` vào `data.yaml` nếu cần
-- ℹ️ Bài 4: bài làm gốc chỉ có bảng thành viên; phần công cụ hợp tác lấy từ báo cáo dự án nhóm ở bài 5
+- ℹ️ Bài 1, 2, 6 chưa có dòng "AI đã sử dụng" vì bài làm gốc không ghi; thêm `ai_use:` vào `data.yaml` nếu cần
+- ✅ Bài 4: phân công sau buổi họp Google Meet và bài nhóm "So sánh và đánh giá câu trả lời từ các công cụ AI" (18 ảnh minh chứng)
 
 ## Giao diện — "Sáu dây"
 Khải hát, biểu diễn sân khấu, chơi guitar và piano, thích nghiên cứu lý thuyết âm nhạc. Cả trang vì thế xoay quanh **cây đàn guitar sáu dây**: sáu bài tập của học phần là sáu dây đàn, gảy được thật.

@@ -318,7 +318,7 @@
     ['.h-big, .product-h, .stage-title', 'rv-wipe'],
     ['.belief, .belief-by, .hobbies-text, .genres-lead, .rest-cap, .goals-head, .pgoals-lead, .six-lead, .six-more, .product-lead, .idline, .topic, .tree-block, .video, .recap, .formula, .frame-lead, .cadence-lead, .quote-end, .source, .essay > *, .report > h4, .report-id, .table-wrap, .tools-dl > div, .collab > h3, .collab > p, .task-material', ''],
     ['.hobbies li, .rows > li, .band li, .src, .staff-line, .pgoals-list li', 'rv-left'],
-    ['.genre, .stage-cols > div, .brief-grid > div, .channels-list li, .collab-list li, .timeline > li, .trouble, .wu, .frame-grid section, .step, .ver, .pager a', ''],
+    ['.genre, .stage-cols > div, .brief-grid > div, .channels-list li, .collab-list li, .timeline > li, .trouble, .wu, .crit > li, .ans, .b4-table, .frame-grid section, .step, .ver, .pager a', ''],
     ['.chord, .cad', 'rv-pop'],
     ['.rest figure, .shot', 'rv-img'],
   ];

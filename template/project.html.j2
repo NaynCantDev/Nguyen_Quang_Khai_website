@@ -44,7 +44,7 @@
 
 <section class="after">
   <div class="wrap">
-    <p class="source">Nguồn: bài làm gốc của {{ name }} trong tài liệu <a href="{{ source_doc }}" target="_blank" rel="noopener">{{ source_doc_title }}</a> (Google Docs).</p>
+    <p class="source">Nguồn: bài làm gốc của {{ name }} trong tài liệu <a href="{{ source_doc }}" target="_blank" rel="noopener">{{ source_doc_title }}</a> (Google Docs).{% if project.product.source_doc %} Bài làm của nhóm: <a href="{{ project.product.source_doc }}" target="_blank" rel="noopener">{{ project.product.title }}</a> (Google Docs).{% endif %}</p>
     <nav class="pager" aria-label="Bài trước và bài sau">
       {% if prev_p %}<a class="pager-prev" href="bai-{{ prev_p.id }}.html"><small>Bài {{ prev_p.id }}</small><b>{{ prev_p.title }}</b></a>{% else %}<a class="pager-prev" href="projects.html"><small>Quay lại</small><b>Danh sách bài tập</b></a>{% endif %}
       {% if next_p %}<a class="pager-next" href="bai-{{ next_p.id }}.html"><small>Bài {{ next_p.id }}</small><b>{{ next_p.title }}</b></a>{% else %}<a class="pager-next" href="conclusion.html"><small>Tiếp theo</small><b>Tổng kết</b></a>{% endif %}

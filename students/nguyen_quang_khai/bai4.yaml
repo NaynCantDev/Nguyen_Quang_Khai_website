@@ -1,18 +1,222 @@
-# Bài 4 — bài làm của Khải ở chương này là bảng thành viên nhóm.
-# Vai trò và công cụ lấy từ báo cáo dự án nhóm ở chương 5 (cùng Nhóm 5).
+title: So sánh và đánh giá câu trả lời từ các công cụ AI
 group: Nhóm 5
+source_doc: https://docs.google.com/document/d/1wpET-csczkraeJX6RaGjmRd-JRWJo3AfzZu2LY6xDVk/edit?usp=sharing
+sheet_url: https://docs.google.com/spreadsheets/d/1kk4v1H5VbdbuadCGdadd1LtrCnwI8wsUIIzz8WKyBxQ/edit?usp=sharing
 members:
-  - { name: Đỗ Đức Khải, lead: true }
-  - { name: Nguyễn Quang Khải, me: true }
-  - { name: Lê Thị Thu Hương }
-  - { name: Đào Vi Linh }
-  - { name: Nguyễn Thu Hương }
-project_name: Ứng dụng công nghệ số và AI xây dựng bài giảng môn Âm nhạc cho học sinh tiểu học
+- name: Đỗ Đức Khải
+  lead: true
+  cls: K20A SPAN
+  role: Phân công công việc, phân tích câu trả lời của 3 công cụ AI, làm bản báo cáo cho bài tập 1.
+- name: Nguyễn Quang Khải
+  me: true
+  cls: K20B SPAN
+  role: Tạo bộ câu hỏi gồm 5 câu hỏi chủ đề khác nhau, sử dụng 3 công cụ AI Chatgpt, gemini, copilot để trả lời; tổng hợp, lập bảng so sánh và chụp minh chứng.
+- name: Lê Thị Thu Hương
+  cls: K20C SPAN
+  role: Phân tích lý do tại sao một số prompt hiệu quả hơn các prompt khác; tổng hợp các nguyên tắc và mẹo viết prompt hiệu quả dựa trên kết quả thử nghiệm.
+- name: Đào Vi Linh
+  cls: K20G SPAN
+  role: Lựa chọn và phân tích tác vụ học tập, xây dựng các phiên bản prompt, thử nghiệm và so sánh kết quả, phân tích hiệu quả các prompt khác nhau.
+- name: Nguyễn Thu Hương
+  cls: K20A SPAN
+  role: Tổng hợp, phê duyệt, rà soát nội dung, chính tả và viết email báo cáo
 collab_tools:
-  - name: Google Docs
-    use: Lên ý tưởng và quản lý công việc
-  - name: Google Drive
-    use: Lưu trữ tài liệu chung
-  - name: Zalo
-    use: Trao đổi trong nhóm
-collab_note: Các thành viên có lịch học cá nhân khác nhau, nên nhóm lập bảng thời gian biểu trống chung trong tuần, tận dụng các ngày cuối tuần hoặc cuối các buổi học để bàn luận và họp online.
+- name: Google Meet
+  use: Họp nhóm trực tuyến để thống nhất và phân công nhiệm vụ
+- name: Google Docs
+  use: Cùng soạn bản báo cáo so sánh
+- name: Google Sheets
+  use: Lập bảng so sánh chi tiết
+- name: Gmail
+  use: Gửi bài và bảng phân công cho giảng viên
+criteria_intro: Quá trình đánh giá được thực hiện khách quan dựa trên 5 tiêu chí cơ bản
+criteria:
+- title: Độ chính xác của thông tin
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Thể hiện độ chính xác chuyên môn cao nhất. Trong lĩnh vực sư phạm âm nhạc, mô hình phân định đúng bản chất cấu trúc nhịp 3/4 và 6/8. Ở kỹ năng tóm tắt tài liệu, các thuật ngữ và số trang thực tế của giáo trình được trích xuất hoàn toàn chuẩn xác.
+  - key: gemini
+    name: Google Gemini
+    text: Đạt mức tốt. Phân tích cấu trúc nhịp và sinh mã nguồn HTML/CSS chạy đúng cú pháp. Tuy nhiên, phần tóm tắt giáo trình chủ yếu dựa vào Mục lục và cấu trúc tổng quát, chưa đi sâu vào từng tiểu mục chi tiết như hai mô hình còn lại.
+  - key: copilot
+    name: Microsoft Copilot
+    text: Nắm vững kiến thức nhạc lý, có khả năng phân tích đúng các khái niệm khó (đảo phách, nghịch phách, hệ thống 12 nửa cung). Hạn chế duy nhất nằm ở việc sinh mã nguồn web gặp lỗi hiển thị/thiếu liên kết tài nguyên khiến giao diện bị thô sơ.
+- title: Độ chi tiết và đầy đủ
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Vượt trội về độ sâu sư phạm. Giáo án 15 phút được chia rõ từng mốc thời gian, có quy ước động tác, câu hỏi gợi mở và tiêu chí đánh giá đo lường kết quả.
+  - key: gemini
+    name: Google Gemini
+    text: Xuất sắc ở khía cạnh dàn dựng không gian và thị giác. Kịch bản múa được mô tả chi tiết từ màu sắc ánh sáng sân khấu (spotlight, xanh lam), lớp âm thanh đến các thuật ngữ múa (isolation, grand jeté). Việc phân tích tâm lý học lứa tuổi cũng bám sát các thuyết khoa học.
+  - key: copilot
+    name: Microsoft Copilot
+    text: Rất chi tiết trong việc phân tích văn bản. Bản tóm tắt sách tổng hợp cặn kẽ từng chương, rút ra "Trọng tâm" và "Mạch kiến thức toàn giáo trình". Dù vậy, các câu hỏi về sáng tạo nghệ thuật chưa khai thác sâu kỹ thuật chuyên môn.
+- title: Khả năng hiểu ngữ cảnh và ý định
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Bắt đúng tâm thế và vai diễn (persona). Đóng vai giáo viên THCS rất tự nhiên, loại bỏ hoàn toàn tính thuyết giảng đúng như yêu cầu của prompt.
+  - key: gemini
+    name: Google Gemini
+    text: Khả năng nắm bắt tinh thần và cảm xúc tốt. Hiểu rõ tính chất của một bài thi kết thúc học phần múa nên đã tối ưu hóa các phân đoạn để sinh viên có đất diễn kỹ thuật.
+  - key: copilot
+    name: Microsoft Copilot
+    text: Hiểu đúng yêu cầu nhưng phản hồi mang xu hướng an toàn. Ý tưởng "Cánh chim tuổi trẻ" mang tính chất văn nghệ phong trào đoàn đội nhiều hơn là một bài thi học phần chuyên ngành mang tính hàn lâm.
+- title: Tính sáng tạo và đa dạng trong câu trả lời
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Sáng tạo trong phương pháp tiếp cận sư phạm. Hoạt động để học sinh "tự phát hiện" quy luật qua bước chân thể hiện tư duy thiết kế bài giảng đổi mới.
+  - key: gemini
+    name: Google Gemini
+    text: Đạt điểm sáng tạo nghệ thuật cao nhất. Việc biến hai loại nhịp thành hình tượng đối lập "Khối đá góc cạnh" và "Con sóng cuộn trào", hay đạo cụ dải lụa tượng trưng cho rào cản mang tính biểu tượng nghệ thuật sân khấu rõ rệt.
+  - key: copilot
+    name: Microsoft Copilot
+    text: Tính sáng tạo ở mức khá, các giải pháp đưa ra mang tính ứng dụng an toàn.
+- title: Khả năng xử lý tiếng Việt
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Hành văn mượt mà, văn phong học thuật và sư phạm chuẩn mực. Bài văn nghị luận có sự liên kết câu từ uyển chuyển, lập luận đa chiều.
+  - key: gemini
+    name: Google Gemini
+    text: 'Ngôn từ giàu hình ảnh, biểu cảm sâu sắc, từ ngữ triết lý (ví dụ: "khoảng lùi thấu cảm"). Giọng điệu giao tiếp thân thiện.'
+  - key: copilot
+    name: Microsoft Copilot
+    text: Diễn đạt rõ ràng, ngữ pháp chuẩn, thuần Việt. Tuy nhiên phong cách viết có phần khuôn mẫu, cấu trúc câu văn lặp lại mô thức phân tích truyền thống
+questions:
+- n: 1
+  title: Thiết kế hoạt động đầu giờ cho học sinh THCS
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Xây dựng quy trình sư phạm 5 bước rất chuẩn mực, logic và có chiều sâu chuyên môn. Lời giải thích về tâm lý học lứa tuổi kết nối chặt chẽ với hoạt động thực hành của học sinh, tạo nên sự liền mạch giữa lý thuyết và phương pháp giảng dạy.
+    shots:
+    - bai4/c1_chatgpt.webp
+  - key: gemini
+    name: Google Gemini
+    text: Nổi bật với ý tưởng hình tượng hóa kiến thức âm nhạc rất sinh động. Mô hình vận dụng các lý thuyết tâm lý học một cách chính xác vào tiến trình sư phạm.
+    shots:
+    - bai4/c1_gemini.webp
+  - key: copilot
+    name: Microsoft Copilot
+    text: Đưa ra các hoạt động trò chơi khá thú vị để tương tác, tuy nhiên phương án tổ chức kết hợp đồng thời hai loại nhịp trong cùng một hoạt động dễ dẫn đến sự chồng chéo và gây rối cho học sinh trên thực tế.
+    shots:
+    - bai4/c1_copilot.webp
+- n: 2
+  title: Lập trình Front-end / Xây dựng Web
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Thể hiện ưu thế vượt trội khi sinh ra mã nguồn giao diện hoàn chỉnh, bố cục đẹp mắt, chuẩn responsive và dễ dàng tùy biến nội dung theo ý muốn của người dùng.
+    shots:
+    - bai4/c2_chatgpt.webp
+  - key: gemini
+    name: Google Gemini
+    text: Cung cấp mã nguồn chuẩn xác, chạy đúng cú pháp nhưng giao diện (UI) sinh ra còn khá đơn giản, khoảng trắng lớn và chưa tạo được điểm nhấn thẩm mỹ đậm chất nghệ thuật.
+    shots:
+    - bai4/c2_gemini-1.webp
+    - bai4/c2_gemini-2.webp
+  - key: copilot
+    name: Microsoft Copilot
+    text: Gặp hạn chế rõ rệt khi sinh mã nguồn web. Giao diện hiển thị còn thô sơ, thiếu trực quan, đồng thời phát sinh lỗi bố cục cấu trúc CSS và font chữ, đòi hỏi người dùng phải can thiệp chỉnh sửa thủ công nhiều.
+    shots:
+    - bai4/c2_copilot-1.webp
+    - bai4/c2_copilot-2.webp
+- n: 3
+  title: Lên ý tưởng biên đạo múa
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Thiết lập cấu trúc phát triển động tác lặp lại 3 lần rất chặt chẽ, tạo sự logic và tính kịch bản rõ ràng cho toàn bộ bài múa.
+    shots:
+    - bai4/c3_chatgpt.webp
+  - key: gemini
+    name: Google Gemini
+    text: Đạt độ xuất sắc trong việc miêu tả không gian nghệ thuật. Mô hình phác họa hoàn hảo các hiệu ứng sân khấu (ánh sáng spotlight, ánh sáng xanh lam), tầng lớp âm thanh phối khí, việc sử dụng đạo cụ cùng hệ thống thuật ngữ chuyên ngành múa (như “ isolation “ , “ grand jeté” ).
+    shots:
+    - bai4/c3_gemini.webp
+  - key: copilot
+    name: Microsoft Copilot
+    text: Đưa ra ý tưởng mang nặng tính cổ động phong trào đoàn đội. Cách tiếp cận này phù hợp với văn nghệ quần chúng nhưng chưa đáp ứng được chiều sâu kỹ thuật và tính hàn lâm của một bài thi học phần chuyên ngành.
+    shots:
+    - bai4/c3_copilot.webp
+- n: 4
+  title: Nghị luận xã hội
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Bài văn nghị luận có lập luận cân bằng, sắc bén, biết cách liên hệ thực tế với các vấn đề trên mạng xã hội một cách rất thuyết phục và đa chiều.
+    shots:
+    - bai4/c4_chatgpt.webp
+  - key: gemini
+    name: Google Gemini
+    text: Sử dụng lời văn mang đậm chất triết lý, giàu hình ảnh biểu cảm và gợi mở sâu sắc về mặt tư duy, tạo cảm xúc mạnh cho người đọc.
+    shots:
+    - bai4/c4_gemini.webp
+  - key: copilot
+    name: Microsoft Copilot
+    text: Tuân thủ đúng cấu trúc nghị luận mẫu mực của văn bản chuẩn, tuy nhiên lời văn còn khá an toàn, rập khuôn theo lối mòn và thiếu những điểm bứt phá sáng tạo.
+    shots:
+    - bai4/c4_copilot.webp
+- n: 5
+  title: Tóm tắt tài liệu PDF
+  tools:
+  - key: chatgpt
+    name: ChatGPT
+    text: Tóm tắt cực kỳ chi tiết theo từng trang tài liệu, phân loại rõ ràng thành 4 khối kiến thức phục vụ ôn thi rất giá trị và sát với thực tế học tập.
+    shots:
+    - bai4/c5_chatgpt.webp
+  - key: gemini
+    name: Google Gemini
+    text: Tận dụng rất tốt tính năng đọc file trực tiếp trên nền tảng trình duyệt, tốc độ xử lý nhanh và tóm lược nội dung một cách súc tích, nắm bắt nhanh ý chính.
+    shots:
+    - bai4/c5_gemini-1.webp
+    - bai4/c5_gemini-2.webp
+  - key: copilot
+    name: Microsoft Copilot
+    text: Thể hiện thế mạnh trích dẫn nguồn cực kỳ chuẩn xác, tóm tắt sâu sắc theo từng chương của giáo trình và hệ thống rõ ràng các phần trọng tâm kiến thức toàn sách.
+    shots:
+    - bai4/c5_copilot.webp
+table:
+  head:
+  - Tiêu chí / Lĩnh vực
+  - ChatGPT
+  - Google Gemini
+  - Microsoft Copilot
+  rows:
+  - - 'Câu 1: Sư phạm âm nhạc & Tâm lý học'
+    - 'Xuất sắc: Quy trình 5 bước mẫu mực; giải thích tâm lý sư phạm sâu sắc.'
+    - 'Tốt: Ý tưởng hình tượng hóa hay; phân tích tâm lý theo thuyết Piaget chuẩn xác.'
+    - 'Khá: Trò chơi thú vị nhưng tổ chức ghép 2 nhịp cùng lúc dễ gây rối trên thực tế.'
+  - - 'Câu 2: Lập trình Front-end (Web)'
+    - 'Xuất sắc: Giao diện đẹp, chuẩn responsive, dễ tùy biến nội dung.'
+    - 'Khá: Mã nguồn chuẩn nhưng UI đơn giản, khoảng trắng lớn, chưa đậm chất nghệ thuật.'
+    - 'Trung bình: Giao diện thô sơ, hiển thị thiếu trực quan, lỗi bố cục CSS/Font.'
+  - - 'Câu 3: Ý tưởng biên đạo múa'
+    - 'Tốt: Xây dựng cấu trúc phát triển động tác lặp lại 3 lần chặt chẽ, giàu tính kịch bản.'
+    - 'Xuất sắc: Mô tả hoàn hảo hiệu ứng sân khấu (ánh sáng, âm thanh, đạo cụ, thuật ngữ múa).'
+    - 'Trung bình: Ý tưởng mang tính cổ động phong trào, thiếu chiều sâu kỹ thuật thi cử.'
+  - - 'Câu 4: Nghị luận xã hội'
+    - 'Xuất sắc: Lập luận cân bằng, sắc bén, liên hệ thực tế mạng xã hội thuyết phục.'
+    - 'Tốt: Lời văn triết lý, giàu hình ảnh biểu cảm, gợi mở tư duy sâu sắc.'
+    - 'Khá: Đúng cấu trúc nghị luận mẫu mực nhưng lời văn an toàn, ít đột phá.'
+  - - 'Câu 5: Tóm tắt tài liệu PDF'
+    - 'Xuất sắc: Chi tiết theo từng trang, phân loại 4 khối kiến thức học thi rất giá trị.'
+    - 'Tốt: Tích hợp đọc file PDF trực tiếp trên trình duyệt rất nhanh, tóm lược súc tích.'
+    - 'Xuất sắc: Trích dẫn nguồn chuẩn xác, tóm tắt sâu từng chương, có phần trọng tâm rõ ràng.'
+  - - Điểm mạnh cốt lõi
+    - Lập luận logic, tư duy sư phạm chuẩn hóa, viết code UI hoàn thiện.
+    - Năng lực sáng tạo nghệ thuật thị giác cao, văn phong truyền cảm, tích hợp hệ sinh thái tốt.
+    - Khả năng đọc hiểu, bám sát tài liệu gốc và trích xuất thông tin học thuật chuẩn xác.
+  - - Điểm hạn chế
+    - Khả năng xử lý trực tiếp file nặng/PDF đôi khi phụ thuộc gói cước trả phí.
+    - Giao diện web sinh ra còn đơn điệu; tóm tắt văn bản học thuật đôi khi quá vắn tắt.
+    - Kỹ năng lập trình front-end và tư duy sáng tạo nghệ thuật còn khuôn mẫu.
+conclusion:
+- 'Qua quá trình thực nghiệm, có thể thấy không có công cụ AI nào là hoàn hảo tuyệt đối trong mọi tình huống. Để tối ưu hóa hiệu suất làm việc em rút ra được một số kết luận sau:'
+- Nên sử dụng Chat GPT cho các tác vụ cần tư duy logic, cấu trúc giáo án sư phạm chuẩn mực và lập trình phần mềm.
+- Nên sử dụng Google Gemini cho các tác vụ đòi hỏi sự sáng tạo nghệ thuật, lên kịch bản, và viết các đoạn văn cần sự truyền cảm, tinh tế. Đặc biệt sử dụng cho các ứng dụng thuộc hệ sinh thái của Google.
+- Nên sử dụng Microsoft Copilot khi cần trích xuất thông tin nhanh, tóm tắt chính xác các văn bản học thuật và tra cứu kiến thức nền tảng.

@@ -115,12 +115,15 @@ projects:
     section: '4.4'
     chapter: Chương 4 – Giao tiếp và hợp tác trong môi trường số
     title: Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm
-    short: Nhóm 5 người cùng làm một dự án chung trên các công cụ trực tuyến.
-    objective: Cùng nhóm năm thành viên dùng các công cụ hợp tác trực tuyến để thực hiện một dự án chung của học phần.
+    short: Nhóm 5 họp Google Meet, chia việc rồi cùng so sánh câu trả lời của ChatGPT, Gemini và Copilot.
+    objective: Cùng nhóm năm thành viên dùng các công cụ hợp tác trực tuyến để họp, phân công và hoàn thành một bài tập chung — so sánh và đánh giá câu trả lời từ ba công cụ AI.
     process:
-      - Lập nhóm năm thành viên, thống nhất chủ đề và phân công.
-      - Trao đổi và lưu trữ tài liệu chung trên các công cụ trực tuyến, họp online khi lịch học lệch nhau.
-    tools: Google Docs, Google Drive, Zalo
+      - Họp nhóm trên Google Meet, thống nhất nội dung và phân công nhiệm vụ cho từng thành viên.
+      - Đặt 5 câu hỏi thuộc 5 chủ đề khác nhau, cho ChatGPT, Gemini và Copilot cùng trả lời, chụp lại minh chứng.
+      - Đánh giá theo 5 tiêu chí, phân tích từng câu, lập bảng so sánh và rút ra kết luận.
+      - Rà soát nội dung, gửi bài và bảng phân công cho giảng viên qua email.
+    tools: Google Meet, Google Docs, Google Sheets, Gmail
+    ai_use: ChatGPT, Google Gemini và Microsoft Copilot là ba công cụ được đem ra so sánh.
   - id: 5
     string: 2
     note: Si
