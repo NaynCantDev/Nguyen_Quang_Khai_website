@@ -1,7 +1,19 @@
 {% from "_macros.html.j2" import shot %}
-<p class="product-lead">{{ d.group }} họp trên Google Meet, chia việc cho năm thành viên rồi cùng làm bài “{{ d.title }}”.</p>
+<p class="product-lead">Minh chứng về cách {{ d.group }} dùng công cụ trực tuyến để quản lý công việc và phối hợp khi làm bài tập chung “{{ d.title }}”.</p>
 
-<h3 class="b4-h">Phân công sau buổi họp</h3>
+<h3 class="b4-h">Cách thức phối hợp trực tuyến</h3>
+<ol class="flow">
+  {% for f in d.flow %}<li><h4>{{ f.title }}</h4><p>{{ f.text }}</p></li>{% endfor %}
+</ol>
+
+<div class="collab">
+  <h3>Công cụ nhóm đã dùng</h3>
+  <ul class="collab-list collab-4">
+    {% for t in d.collab_tools %}<li><b>{{ t.name }}</b><span>{{ t.use }}</span>{% if t.url %}<a href="{{ t.url }}" target="_blank" rel="noopener">{{ t.link }}</a>{% endif %}</li>{% endfor %}
+  </ul>
+</div>
+
+<h3 class="b4-h">Phân công nhiệm vụ sau buổi họp</h3>
 <ol class="band band-roles">
   {% for m in d.members %}
   <li{% if m.me %} class="is-me"{% endif %}>
@@ -11,51 +23,23 @@
   {% endfor %}
 </ol>
 
-<div class="collab">
-  <h3>Công cụ hợp tác trực tuyến của nhóm</h3>
-  <ul class="collab-list collab-4">
-    {% for t in d.collab_tools %}<li><b>{{ t.name }}</b><span>{{ t.use }}</span></li>{% endfor %}
-  </ul>
-</div>
-
-<div class="b4-result">
-  <h3 class="b4-h">Thành quả: {{ d.title }}</h3>
-  <p>{{ d.criteria_intro }}:</p>
-  <ol class="crit">
-    {% for c in d.criteria %}
-    <li>
-      <h4>{{ c.title }}</h4>
-      <div class="tri">
-        {% for t in c.tools %}<div class="tri-{{ t.key }}"><b>{{ t.name }}</b><p>{{ t.text }}</p></div>{% endfor %}
-      </div>
-    </li>
-    {% endfor %}
-  </ol>
-</div>
-
-<div class="tasks" data-tabs>
-  <h3 class="b4-h">Phân tích câu trả lời kèm minh chứng hình ảnh</h3>
-  <div class="tabs tabs-5" role="tablist" aria-label="Năm câu hỏi">
-    {% for q in d.questions %}
-    <button type="button" role="tab" id="tab-{{ q.n }}" aria-controls="task-{{ q.n }}" aria-selected="{{ 'true' if loop.first else 'false' }}"><small>Câu {{ q.n }}</small>{{ q.title }}</button>
-    {% endfor %}
+<div class="proof">
+  <h3 class="b4-h">Minh chứng</h3>
+  <div class="proof-grid">
+    {{ shot('bai4/phan-cong-email.webp', 'Bảng phân công trong email nhóm gửi giảng viên', 'bai4-proof') }}
+    <div class="proof-links">
+      <p>Hai tài liệu dùng chung của nhóm vẫn mở được để kiểm tra trực tiếp:</p>
+      <ul>
+        <li><a href="{{ d.source_doc }}" target="_blank" rel="noopener">Tài liệu Google Docs “{{ d.title }}”</a>, nơi cả nhóm cùng soạn bài.</li>
+        <li><a href="{{ d.sheet_url }}" target="_blank" rel="noopener">Bảng so sánh chi tiết trên Google Sheets</a>.</li>
+      </ul>
+    </div>
   </div>
-  {% for q in d.questions %}
-  <div class="task" role="tabpanel" id="task-{{ q.n }}" aria-labelledby="tab-{{ q.n }}"{% if not loop.first %} hidden{% endif %}>
-    <h4 class="task-h">Câu {{ q.n }}: {{ q.title }}</h4>
-    {% for t in q.tools %}
-    <article class="ans">
-      <div class="ans-text"><h5>{{ t.name }}</h5><p>{{ t.text }}</p></div>
-      <div class="ans-shots">{% for s in t.shots %}{{ shot(s, 'Câu ' ~ q.n ~ ', ' ~ t.name ~ (': ảnh ' ~ loop.index if t.shots | length > 1 else ''), 'bai4') }}{% endfor %}</div>
-    </article>
-    {% endfor %}
-  </div>
-  {% endfor %}
 </div>
 
 <div class="b4-table">
-  <h3 class="b4-h">Bảng so sánh</h3>
-  <p><a href="{{ d.sheet_url }}" target="_blank" rel="noopener">Mở bảng so sánh chi tiết trên Google Sheets</a></p>
+  <h3 class="b4-h">Kết quả của sự phối hợp</h3>
+  <p class="b4-note">Bài tập chung nhóm hoàn thành sau khi phối hợp: so sánh câu trả lời của ChatGPT, Google Gemini và Microsoft Copilot qua năm câu hỏi.</p>
   <div class="table-wrap">
     <table class="cmp">
       <thead><tr>{% for h in d.table.head %}<th>{{ h }}</th>{% endfor %}</tr></thead>
@@ -64,7 +48,32 @@
   </div>
 </div>
 
-<div class="recap">
-  <h3>Kết luận</h3>
-  <div class="b4-concl">{% for p in d.conclusion %}<p>{{ p }}</p>{% endfor %}</div>
-</div>
+<details class="more">
+  <summary>Xem toàn bộ bài làm của nhóm: năm tiêu chí, phân tích từng câu kèm ảnh, kết luận</summary>
+  <p class="more-p">{{ d.criteria_intro }}:</p>
+  <ol class="crit">
+    {% for c in d.criteria %}
+    <li><h4>{{ c.title }}</h4><div class="tri">{% for t in c.tools %}<div class="tri-{{ t.key }}"><b>{{ t.name }}</b><p>{{ t.text }}</p></div>{% endfor %}</div></li>
+    {% endfor %}
+  </ol>
+  <div class="tasks" data-tabs>
+    <h4 class="more-h">Phân tích câu trả lời kèm minh chứng hình ảnh</h4>
+    <div class="tabs tabs-5" role="tablist" aria-label="Năm câu hỏi">
+      {% for q in d.questions %}
+      <button type="button" role="tab" id="tab-{{ q.n }}" aria-controls="task-{{ q.n }}" aria-selected="{{ 'true' if loop.first else 'false' }}"><small>Câu {{ q.n }}</small>{{ q.title }}</button>
+      {% endfor %}
+    </div>
+    {% for q in d.questions %}
+    <div class="task" role="tabpanel" id="task-{{ q.n }}" aria-labelledby="tab-{{ q.n }}"{% if not loop.first %} hidden{% endif %}>
+      <h4 class="task-h">Câu {{ q.n }}: {{ q.title }}</h4>
+      {% for t in q.tools %}
+      <article class="ans">
+        <div class="ans-text"><h5>{{ t.name }}</h5><p>{{ t.text }}</p></div>
+        <div class="ans-shots">{% for s in t.shots %}{{ shot(s, 'Câu ' ~ q.n ~ ', ' ~ t.name ~ (': ảnh ' ~ loop.index if t.shots | length > 1 else ''), 'bai4') }}{% endfor %}</div>
+      </article>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="recap"><h3>Kết luận</h3><div class="b4-concl">{% for p in d.conclusion %}<p>{{ p }}</p>{% endfor %}</div></div>
+</details>

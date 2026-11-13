@@ -22,11 +22,15 @@ members:
   role: Tổng hợp, phê duyệt, rà soát nội dung, chính tả và viết email báo cáo
 collab_tools:
 - name: Google Meet
-  use: Họp nhóm trực tuyến để thống nhất và phân công nhiệm vụ
+  use: Họp nhóm trực tuyến, thống nhất nội dung và phân công
 - name: Google Docs
-  use: Cùng soạn bản báo cáo so sánh
+  use: Tài liệu chung để cả nhóm cùng soạn bài
+  url: https://docs.google.com/document/d/1wpET-csczkraeJX6RaGjmRd-JRWJo3AfzZu2LY6xDVk/edit?usp=sharing
+  link: Mở tài liệu chung của nhóm
 - name: Google Sheets
-  use: Lập bảng so sánh chi tiết
+  use: Bảng so sánh dùng chung
+  url: https://docs.google.com/spreadsheets/d/1kk4v1H5VbdbuadCGdadd1LtrCnwI8wsUIIzz8WKyBxQ/edit?usp=sharing
+  link: Mở bảng tính của nhóm
 - name: Gmail
   use: Gửi bài và bảng phân công cho giảng viên
 criteria_intro: Quá trình đánh giá được thực hiện khách quan dựa trên 5 tiêu chí cơ bản
@@ -220,3 +224,14 @@ conclusion:
 - Nên sử dụng Chat GPT cho các tác vụ cần tư duy logic, cấu trúc giáo án sư phạm chuẩn mực và lập trình phần mềm.
 - Nên sử dụng Google Gemini cho các tác vụ đòi hỏi sự sáng tạo nghệ thuật, lên kịch bản, và viết các đoạn văn cần sự truyền cảm, tinh tế. Đặc biệt sử dụng cho các ứng dụng thuộc hệ sinh thái của Google.
 - Nên sử dụng Microsoft Copilot khi cần trích xuất thông tin nhanh, tóm tắt chính xác các văn bản học thuật và tra cứu kiến thức nền tảng.
+flow:
+- title: Họp nhóm trên Google Meet
+  text: Cả nhóm họp trực tuyến để thống nhất nội dung bài tập và chia việc.
+- title: Phân công bằng bảng nhiệm vụ
+  text: Mỗi thành viên nhận một phần việc cụ thể, ghi thành bảng phân công chung của nhóm.
+- title: Cùng làm trên một tài liệu Google Docs
+  text: Câu hỏi, câu trả lời của ba công cụ AI, ảnh minh chứng và phần phân tích được gom vào cùng một tài liệu chia sẻ.
+- title: Lập bảng so sánh trên Google Sheets
+  text: Kết quả đánh giá được tổng hợp thành bảng tính dùng chung, ai trong nhóm cũng mở và đối chiếu được.
+- title: Rà soát và gửi bài qua email
+  text: Một thành viên tổng hợp, rà soát nội dung, chính tả rồi viết email báo cáo gửi giảng viên kèm bảng phân công.
