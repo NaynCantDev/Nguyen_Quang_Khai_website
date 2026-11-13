@@ -57,6 +57,14 @@
   </div>
 </section>
 
+
+{# Dải chữ chạy: tốc độ và chiều chạy đổi theo cách cuộn trang #}
+<div class="marquee" data-marquee aria-hidden="true">
+  <div class="marquee-track">
+    {% for _ in range(2) %}<span>{% for h in hobbies %}{{ h }} <i>♪</i> {% endfor %}{% for g in genres %}{{ g.name }} <i>♪</i> {% endfor %}</span>{% endfor %}
+  </div>
+</div>
+
 <section class="goals">
   <div class="wrap">
     <h2 class="h-big">Mục tiêu học tập<br>và định hướng phát triển</h2>
@@ -99,6 +107,13 @@
     </ul>
   </div>
 </section>
+
+
+<div class="marquee marquee-alt" data-marquee data-dir="-1" aria-hidden="true">
+  <div class="marquee-track">
+    {% for _ in range(2) %}<span>{% for p in projects %}Dây {{ p.string }} <i>♪</i> {{ p.note }} <i>♪</i> {% endfor %}</span>{% endfor %}
+  </div>
+</div>
 
 <section class="six">
   <div class="wrap">

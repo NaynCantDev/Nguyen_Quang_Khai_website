@@ -152,6 +152,7 @@
   $$('.string').forEach((el) => strings.set(el, new GuitarString(el)));
   const ratioX = (el, e) => { const r = el.getBoundingClientRect(); return (e.clientX - r.left) / Math.max(1, r.width); };
 
+  strings.forEach((s, el) => el.addEventListener('qk-shake', (e) => s.pluck(0.2 + Math.random() * 0.6, false, e.detail || 0.6)));
   strings.forEach((s, el) => {
     if (el.classList.contains('string-row')) return; // dây trong hàng bài tập do cả hàng điều khiển
     el.addEventListener('pointerenter', (e) => s.pluck(ratioX(el, e)));
@@ -304,4 +305,102 @@
       wrap.replaceChildren(f);
     });
   });
+})();
+
+/* ---------------- Chuyển động theo cuộn trang ---------------- */
+(() => {
+  'use strict';
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  // 1) Hé lộ từng khối khi cuộn tới
+  const REVEAL = [
+    ['.h-big, .product-h, .stage-title', 'rv-wipe'],
+    ['.belief, .belief-by, .hobbies-text, .genres-lead, .rest-cap, .goals-head, .pgoals-lead, .six-lead, .six-more, .product-lead, .idline, .topic, .tree-block, .video, .recap, .formula, .frame-lead, .cadence-lead, .quote-end, .source, .essay > *, .report > h4, .report-id, .table-wrap, .tools-dl > div, .collab > h3, .collab > p, .task-material', ''],
+    ['.hobbies li, .rows > li, .band li, .src, .staff-line, .pgoals-list li', 'rv-left'],
+    ['.genre, .stage-cols > div, .brief-grid > div, .channels-list li, .collab-list li, .timeline > li, .trouble, .wu, .frame-grid section, .step, .ver, .pager a', ''],
+    ['.chord, .cad', 'rv-pop'],
+    ['.rest figure, .shot', 'rv-img'],
+  ];
+  const items = [];
+  REVEAL.forEach(([sel, cls]) => $$(sel).forEach((el) => {
+    if (el.classList.contains('rv')) return;
+    el.classList.add('rv'); if (cls) el.classList.add(cls);
+    const sibs = Array.from(el.parentElement.children).filter((x) => x.classList.contains('rv') || x === el);
+    el.style.setProperty('--i', Math.min(sibs.indexOf(el), 6));
+    items.push(el);
+  }));
+  const show = (el) => {
+    el.classList.add('in');
+    // gỡ lớp hiệu ứng sau khi chạy xong để không ảnh hưởng hiệu ứng rê chuột
+    setTimeout(() => { el.classList.remove('rv', 'rv-left', 'rv-right', 'rv-pop', 'rv-wipe', 'rv-img', 'in'); el.style.removeProperty('--i'); }, 2400);
+  };
+  // Khối bị cắt bằng clip-path không tự báo "đã vào màn hình", nên theo dõi phần tử cha của nó.
+  const watched = new Map();
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    (watched.get(e.target) || []).forEach(show);
+    watched.delete(e.target);
+  }), { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+  items.forEach((el) => {
+    const clipped = el.classList.contains('rv-wipe') || el.classList.contains('rv-img');
+    const target = clipped ? el.parentElement : el;
+    if (!watched.has(target)) { watched.set(target, []); io.observe(target); }
+    watched.get(target).push(el);
+  });
+  $$('.hero-strings .string').forEach((el, i) => el.style.setProperty('--s', i));
+
+  // 2) Các lớp chuyển động theo vị trí và tốc độ cuộn
+  const root = document.documentElement;
+  const hero = document.querySelector('.hero');
+  const phead = document.querySelector('.phead');
+  const stage = document.querySelector('.stage');
+  const steps = document.querySelector('.steps');
+  const drift = $$('.rest-a, .rest-b').map((el, i) => ({ el, k: i ? -0.09 : 0.07 }));
+  const heads = $$('.h-big');
+  const marquees = $$('[data-marquee]').map((el) => ({ el, track: el.querySelector('.marquee-track'), x: 0, dir: Number(el.dataset.dir) || 1, w: 0 }));
+  const measure = () => marquees.forEach((m) => { m.w = m.track.scrollWidth / 2; });
+  measure(); addEventListener('resize', measure); addEventListener('load', measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  let lastY = scrollY, vel = 0, lastPluck = 0, lastT = performance.now();
+  const plucked = $$('.hero-strings .string, .string-head');
+
+  function frame(now) {
+    const y = scrollY, vh = innerHeight;
+    const dt = Math.min(64, now - lastT); lastT = now;
+    const dy = y - lastY; lastY = y;
+    vel += (dy - vel) * 0.18;                       // tốc độ cuộn đã làm mượt
+
+    const max = root.scrollHeight - vh;
+    root.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
+    if (hero) hero.style.setProperty('--h', clamp(y / hero.offsetHeight).toFixed(4));
+    if (phead) phead.style.setProperty('--ph', clamp(y / phead.offsetHeight).toFixed(4));
+    if (stage) { const r = stage.getBoundingClientRect(); stage.style.setProperty('--sp', clamp((vh - r.top) / (vh + r.height)).toFixed(4)); }
+    if (steps) { const r = steps.getBoundingClientRect(); steps.style.setProperty('--prog', clamp((vh * 0.6 - r.top) / r.height).toFixed(4)); }
+    drift.forEach(({ el, k }) => { const r = el.getBoundingClientRect(); if (r.bottom > -200 && r.top < vh + 200) el.style.setProperty('--py', ((r.top + r.height / 2 - vh / 2) * k).toFixed(1) + 'px'); });
+    heads.forEach((el) => { const r = el.getBoundingClientRect(); if (r.bottom > 0 && r.top < vh) el.style.setProperty('--hx', ((r.top - vh * 0.5) * 0.06).toFixed(1)); });
+
+    // dải chữ: tự trôi, cuộn càng nhanh trôi càng nhanh, đổi chiều theo chiều cuộn
+    marquees.forEach((m) => {
+      if (!m.w) return;
+      const push = (0.045 * dt + Math.abs(vel) * 0.9) * (vel < -0.5 ? -1 : 1) * m.dir;
+      m.x = ((m.x - push) % m.w + m.w) % m.w;
+      m.track.style.transform = `translate3d(${-m.x}px,0,0)`;
+    });
+
+    // cuộn nhanh thì dây đàn đang thấy trên màn hình rung theo (không phát tiếng)
+    if (Math.abs(vel) > 14 && now - lastPluck > 260) {
+      lastPluck = now;
+      plucked.forEach((el, i) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        setTimeout(() => el.dispatchEvent(new CustomEvent('qk-shake', { detail: clamp(Math.abs(vel) / 60, 0.35, 1) })), i * 40);
+      });
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 })();
