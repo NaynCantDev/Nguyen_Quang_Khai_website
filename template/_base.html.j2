@@ -36,8 +36,12 @@
   <a class="pedal" href="index.html"{% if page == 'home' %} aria-current="page"{% endif %}><i class="led"></i><span>Giới thiệu</span></a>
   <a class="pedal" href="projects.html"{% if page == 'projects' %} aria-current="page"{% endif %}><i class="led"></i><span>Bài tập</span></a>
   <a class="pedal" href="conclusion.html"{% if page == 'conclusion' %} aria-current="page"{% endif %}><i class="led"></i><span>Tổng kết</span></a>
+  <button class="pedal pedal-theme" type="button" data-theme-toggle aria-pressed="false"><i class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></i><span data-theme-label>Nhạc chủ đề</span></button>
   <button class="pedal pedal-sound" type="button" data-sound-toggle aria-pressed="true"><i class="led"></i><span data-sound-label>Tiếng đàn bật</span></button>
 </nav>
+
+{# Đèn sân khấu, chỉ sáng khi nhạc chủ đề đang chạy #}
+<div class="lights" data-lights aria-hidden="true"><i></i><i></i><i></i><b></b></div>
 
 <div class="lightbox" data-lightbox hidden>
   <button class="lb-close" type="button" data-lb-close aria-label="Đóng ảnh">Đóng</button>

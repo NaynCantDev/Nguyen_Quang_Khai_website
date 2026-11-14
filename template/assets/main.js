@@ -383,10 +383,11 @@
     drift.forEach(({ el, k }) => { const r = el.getBoundingClientRect(); if (r.bottom > -200 && r.top < vh + 200) el.style.setProperty('--py', ((r.top + r.height / 2 - vh / 2) * k).toFixed(1) + 'px'); });
     heads.forEach((el) => { const r = el.getBoundingClientRect(); if (r.bottom > 0 && r.top < vh) el.style.setProperty('--hx', ((r.top - vh * 0.5) * 0.06).toFixed(1)); });
 
+    const live = window.qkLive; const kick = live ? live.kick : 0; if (live) live.kick *= 0.86; // cú đẩy theo phách của nhạc chủ đề
     // dải chữ: tự trôi, cuộn càng nhanh trôi càng nhanh, đổi chiều theo chiều cuộn
     marquees.forEach((m) => {
       if (!m.w) return;
-      const push = (0.045 * dt + Math.abs(vel) * 0.9) * (vel < -0.5 ? -1 : 1) * m.dir;
+      const push = (0.045 * dt + Math.abs(vel) * 0.9 + kick * 9) * (vel < -0.5 ? -1 : 1) * m.dir;
       m.x = ((m.x - push) % m.w + m.w) % m.w;
       m.track.style.transform = `translate3d(${-m.x}px,0,0)`;
     });
@@ -403,4 +404,159 @@
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+})();
+
+/* ---------------- Nhạc chủ đề ----------------
+   Đoạn nhạc 10 giây, 128 nhịp/phút. Lưới phách đo sẵn từ file:
+   phách đầu ở 0,41 s; hai phách mở đầu, ba phách lặng trống, rồi vào đoạn chính ở 2,75 s.
+   Phát xong phần mở đầu thì lặp 16 phách (4 ô nhịp) của đoạn chính.
+   Hiệu ứng bám lưới phách này và độ lớn đo trực tiếp bằng AnalyserNode. */
+(() => {
+  'use strict';
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const btns = $$('[data-theme-toggle]');
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!btns.length || !AC) { btns.forEach((b) => { b.hidden = true; }); return; }
+
+  const SRC = 'assets/audio/chu-de.m4a';
+  const BEAT = 0.4688, FIRST = 0.41;
+  const DROP = FIRST + 5 * BEAT - 0.012;      // lùi 12 ms để điểm nối rơi ngay trước tiếng trống
+  const LOOP = 16 * BEAT, LOOP_END = DROP + LOOP;
+  const PATTERN = [6, 3, 5, 2, 6, 4, 5, 1];   // dây nào rung ở phách nào
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+  const live = window.qkLive = { kick: 0 };
+  const lights = document.querySelector('[data-lights] b');
+  const nameLines = $$('.hero-name span');
+  const titles = $$('.phead-title, .h-big');
+  const eqs = $$('.eq').map((el) => Array.from(el.children));
+
+  let ctx = null, buffer = null, loading = null, source = null, gain = null, analyser = null, bins = null;
+  let playing = false, startedAt = 0, raf = 0, lastBeat = -99, lastSec = '', lastLoop = 0, lvl = 0;
+
+  const paint = (state) => btns.forEach((b) => {
+    b.setAttribute('aria-pressed', String(state === 'on'));
+    b.disabled = state === 'loading';
+    const label = b.querySelector('[data-theme-label]');
+    if (label) label.textContent = { on: 'Dừng nhạc', off: 'Nhạc chủ đề', loading: 'Đang tải nhạc', error: 'Không phát được nhạc' }[state];
+  });
+
+  function load() {
+    if (!loading) {
+      loading = fetch(SRC).then((r) => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+        .then((ab) => new Promise((ok, fail) => ctx.decodeAudioData(ab, ok, fail)))
+        .then((b) => { buffer = b; });
+    }
+    return loading;
+  }
+
+  const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+  const shake = (el, v) => el.dispatchEvent(new CustomEvent('qk-shake', { detail: v }));
+  const hit = (el, lift) => {
+    if (!el.animate || !visible(el)) return;
+    el.animate([{ translate: `0 ${lift}`, color: '#f3cd6c' }, { translate: '0 0' }], { duration: BEAT * 900, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  };
+
+  function burst(strength) {
+    if (lights && lights.animate) lights.animate([{ opacity: strength }, { opacity: 0 }], { duration: BEAT * 2000, easing: 'ease-out' });
+    $$('.string').filter(visible).forEach((el, i) => setTimeout(() => shake(el, 1), i * 30));
+    live.kick = 2.4;
+  }
+
+  function onBeat(b, sec) {
+    const strings = $$('.hero-strings .string, .string-head, .string-row').filter(visible);
+    if (sec === 'break') {                       // quãng lặng: chỉ dây mảnh rung khẽ
+      if (strings.length) shake(strings[strings.length - 1 - ((b + 6) % Math.min(3, strings.length))], 0.35);
+      return;
+    }
+    live.kick = 1;
+    const k = ((b - 5) % 8 + 8) % 8;
+    if (strings.length) {
+      const want = PATTERN[k];
+      const el = strings.find((s) => Number(s.dataset.string) === want) || strings[k % strings.length];
+      shake(el, k % 4 === 0 ? 1 : 0.7);
+    }
+    if (nameLines.length) hit(nameLines[k % nameLines.length], '-0.05em');
+    if (k % 4 === 0) titles.forEach((el) => hit(el, '-0.04em'));
+  }
+
+  function tick() {
+    if (!playing) return;
+    const t = ctx.currentTime - startedAt - (ctx.outputLatency || ctx.baseLatency || 0);
+    const loops = t >= LOOP_END ? Math.floor((t - DROP) / LOOP) : 0;
+    const pos = loops ? DROP + (t - DROP) % LOOP : t;
+    const bf = (pos - FIRST) / BEAT, b = Math.floor(bf), ph = bf - b;
+    const sec = b < 2 ? 'intro' : b < 5 ? 'break' : 'drop';
+
+    analyser.getByteFrequencyData(bins);
+    const hz = ctx.sampleRate / analyser.fftSize;
+    const band = (lo, hi) => { let s = 0, n = 0; for (let i = Math.max(1, Math.round(lo / hz)); i <= Math.round(hi / hz) && i < bins.length; i++) { s += bins[i]; n++; } return n ? s / n / 255 : 0; };
+    const e = [band(40, 140), band(180, 700), band(900, 3200), band(5000, 11000)];
+    lvl += ((e[0] + e[1] + e[2]) / 3 - lvl) * 0.2;
+    eqs.forEach((bars) => bars.forEach((bar, i) => bar.style.setProperty('--e', Math.max(0.12, Math.min(1, e[i] * 1.25)).toFixed(2))));
+
+    if (!reduceMotion) {
+      const pulse = (pos < FIRST || sec === 'break') ? 0 : Math.exp(-ph * 4.2);
+      root.style.setProperty('--beat', pulse.toFixed(3));
+      root.style.setProperty('--lvl', lvl.toFixed(3));
+      root.style.setProperty('--swing', Math.sin((bf - 5) / 8 * Math.PI * 2).toFixed(3)); // đèn lia qua lại mỗi hai ô nhịp
+      if (sec !== lastSec) { root.dataset.sec = sec; if (sec === 'drop') burst(0.5); lastSec = sec; }
+      if (loops !== lastLoop) { lastLoop = loops; burst(0.28); }
+      if (b !== lastBeat && pos >= FIRST) { lastBeat = b; onBeat(b, sec); }
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function clear() {
+    cancelAnimationFrame(raf);
+    root.classList.remove('is-live');
+    delete root.dataset.sec;
+    ['--beat', '--lvl', '--swing'].forEach((v) => root.style.removeProperty(v));
+    eqs.forEach((bars) => bars.forEach((bar) => bar.style.removeProperty('--e')));
+    live.kick = 0;
+  }
+
+  function stop() {
+    if (!playing) return;
+    playing = false;
+    const s = source, g = gain;
+    g.gain.cancelScheduledValues(ctx.currentTime);
+    g.gain.setValueAtTime(g.gain.value, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.25);
+    setTimeout(() => { try { s.stop(); } catch (e) { /* đã dừng */ } s.disconnect(); }, 300);
+    clear(); paint('off');
+  }
+
+  async function start() {
+    try {
+      if (!ctx) ctx = new AC();
+      if (ctx.state === 'suspended') await ctx.resume();
+      if (!buffer) { paint('loading'); await load(); }
+    } catch (e) { loading = null; paint('error'); setTimeout(() => paint('off'), 2500); return; }
+    if (playing) return;
+    source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.loop = true; source.loopStart = DROP; source.loopEnd = Math.min(LOOP_END, buffer.duration);
+    gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.85, ctx.currentTime + 0.08);
+    analyser = ctx.createAnalyser();
+    analyser.fftSize = 2048; analyser.smoothingTimeConstant = 0.72;
+    bins = new Uint8Array(analyser.frequencyBinCount);
+    source.connect(gain); gain.connect(analyser); analyser.connect(ctx.destination);
+    startedAt = ctx.currentTime + 0.03;
+    source.start(startedAt);
+    playing = true; lastBeat = -99; lastSec = ''; lastLoop = 0; lvl = 0;
+    root.classList.add('is-live');
+    paint('on');
+    raf = requestAnimationFrame(tick);
+  }
+
+  btns.forEach((b) => b.addEventListener('click', () => (playing ? stop() : start())));
+  // Rời tab thì tạm ngưng, quay lại thì chạy tiếp đúng chỗ
+  document.addEventListener('visibilitychange', () => {
+    if (!ctx || !playing) return;
+    if (document.hidden) { ctx.suspend(); cancelAnimationFrame(raf); } else { ctx.resume().then(() => { raf = requestAnimationFrame(tick); }); }
+  });
+  addEventListener('pagehide', () => { if (playing) { try { source.stop(); } catch (e) { /* đã dừng */ } } });
 })();
