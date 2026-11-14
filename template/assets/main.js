@@ -85,19 +85,6 @@
     frets.forEach((f, i) => { if (f >= 0) pluckSound(fretHz(i, f), delay + (n++) * gap, 0.8); });
   }
 
-  // Ba câu dạo ngắn cho ba dòng nhạc (giai điệu tự đặt, chỉ để minh họa màu sắc)
-  const MOTIFS = {
-    pentatonic: { notes: [[67, 0], [69, 0.28], [72, 0.56], [69, 0.98], [67, 1.26], [64, 1.54], [62, 1.82], [60, 2.24]], ms: 2900 },
-    march: { notes: [[60, 0], [60, 0.3], [64, 0.45], [67, 0.75], [67, 1.05], [72, 1.2], [67, 1.65], [72, 1.95]], ms: 2700 },
-    pop: { chords: [[[-1, 0, 2, 2, 1, 0], 0], [[1, 3, 3, 2, 1, 1], 0.62], [[-1, 3, 2, 0, 1, 0], 1.24], [[3, 2, 0, 0, 0, 3], 1.86]], ms: 3000 },
-  };
-  function playMotif(name) {
-    const m = MOTIFS[name];
-    if (!m) return 0;
-    (m.notes || []).forEach(([note, t]) => pluckSound(midiHz(note), t, 0.9));
-    (m.chords || []).forEach(([frets, t]) => playChord(frets, t, 0.03));
-    return m.ms;
-  }
 
   /* ---------------- Dây đàn ---------------- */
   class GuitarString {
@@ -221,7 +208,6 @@
     });
   }));
 
-  $$('[data-motif]').forEach((btn) => btn.addEventListener('click', () => { flash(btn, playMotif(btn.dataset.motif) || 600); }));
 
   /* ---------------- Khung xem ảnh ---------------- */
   const box = document.querySelector('[data-lightbox]');
@@ -383,7 +369,7 @@
     drift.forEach(({ el, k }) => { const r = el.getBoundingClientRect(); if (r.bottom > -200 && r.top < vh + 200) el.style.setProperty('--py', ((r.top + r.height / 2 - vh / 2) * k).toFixed(1) + 'px'); });
     heads.forEach((el) => { const r = el.getBoundingClientRect(); if (r.bottom > 0 && r.top < vh) el.style.setProperty('--hx', ((r.top - vh * 0.5) * 0.06).toFixed(1)); });
 
-    const live = window.qkLive; const kick = live ? live.kick : 0; if (live) live.kick *= 0.86; // cú đẩy theo phách của nhạc chủ đề
+    const live = window.qkLive; const kick = live ? live.kick : 0; if (live) live.kick *= 0.86; // cú đẩy theo tiếng trầm của đoạn nhạc đang phát
     // dải chữ: tự trôi, cuộn càng nhanh trôi càng nhanh, đổi chiều theo chiều cuộn
     marquees.forEach((m) => {
       if (!m.w) return;
@@ -406,157 +392,107 @@
   requestAnimationFrame(frame);
 })();
 
-/* ---------------- Nhạc chủ đề ----------------
-   Đoạn nhạc 10 giây, 128 nhịp/phút. Lưới phách đo sẵn từ file:
-   phách đầu ở 0,41 s; hai phách mở đầu, ba phách lặng trống, rồi vào đoạn chính ở 2,75 s.
-   Phát xong phần mở đầu thì lặp 16 phách (4 ô nhịp) của đoạn chính.
-   Hiệu ứng bám lưới phách này và độ lớn đo trực tiếp bằng AnalyserNode. */
+/* ---------------- Ba đoạn nhạc của ba dòng nhạc ----------------
+   Bấm một nút dòng nhạc thì phát đoạn nhạc Khải gửi; bấm lần nữa hoặc bấm nút khác thì dừng.
+   Trong lúc phát, AnalyserNode đo độ lớn và bắt cú nhấn tiếng trầm để trang chuyển động theo. */
 (() => {
   'use strict';
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  const btns = $$('[data-theme-toggle]');
+  const btns = $$('[data-clip]');
   const AC = window.AudioContext || window.webkitAudioContext;
-  if (!btns.length || !AC) { btns.forEach((b) => { b.hidden = true; }); return; }
+  if (!btns.length) return;
+  if (!AC) { btns.forEach((b) => { b.disabled = true; }); return; }
 
-  const SRC = 'assets/audio/chu-de.m4a';
-  const BEAT = 0.4688, FIRST = 0.41;
-  const DROP = FIRST + 5 * BEAT - 0.012;      // lùi 12 ms để điểm nối rơi ngay trước tiếng trống
-  const LOOP = 16 * BEAT, LOOP_END = DROP + LOOP;
-  const PATTERN = [6, 3, 5, 2, 6, 4, 5, 1];   // dây nào rung ở phách nào
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const root = document.documentElement;
   const live = window.qkLive = { kick: 0 };
-  const lights = document.querySelector('[data-lights] b');
   const nameLines = $$('.hero-name span');
-  const titles = $$('.phead-title, .h-big');
-  const eqs = $$('.eq').map((el) => Array.from(el.children));
+  const cache = new Map();
+  let ctx = null, source = null, gain = null, analyser = null, bins = null, current = null;
+  let raf = 0, t0 = 0, lvl = 0, bassAvg = 0, pulse = 0, lastHit = 0, hits = 0;
 
-  let ctx = null, buffer = null, loading = null, source = null, gain = null, analyser = null, bins = null;
-  let playing = false, startedAt = 0, raf = 0, lastBeat = -99, lastSec = '', lastLoop = 0, lvl = 0;
-
-  const paint = (state) => btns.forEach((b) => {
-    b.setAttribute('aria-pressed', String(state === 'on'));
-    b.disabled = state === 'loading';
-    const label = b.querySelector('[data-theme-label]');
-    if (label) label.textContent = { on: 'Dừng nhạc', off: 'Nhạc chủ đề', loading: 'Đang tải nhạc', error: 'Không phát được nhạc' }[state];
-  });
-
-  function load() {
-    if (!loading) {
-      loading = fetch(SRC).then((r) => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
-        .then((ab) => new Promise((ok, fail) => ctx.decodeAudioData(ab, ok, fail)))
-        .then((b) => { buffer = b; });
+  const load = (url) => {
+    if (!cache.has(url)) {
+      cache.set(url, fetch(url).then((r) => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+        .then((ab) => new Promise((ok, fail) => ctx.decodeAudioData(ab, ok, fail))));
     }
-    return loading;
-  }
-
-  const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
-  const shake = (el, v) => el.dispatchEvent(new CustomEvent('qk-shake', { detail: v }));
-  const hit = (el, lift) => {
-    if (!el.animate || !visible(el)) return;
-    el.animate([{ translate: `0 ${lift}`, color: '#f3cd6c' }, { translate: '0 0' }], { duration: BEAT * 900, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    return cache.get(url);
   };
+  const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+  const bars = (btn) => $$('.eq b', btn);
 
-  function burst(strength) {
-    if (lights && lights.animate) lights.animate([{ opacity: strength }, { opacity: 0 }], { duration: BEAT * 2000, easing: 'ease-out' });
-    $$('.string').filter(visible).forEach((el, i) => setTimeout(() => shake(el, 1), i * 30));
-    live.kick = 2.4;
-  }
-
-  function onBeat(b, sec) {
-    const strings = $$('.hero-strings .string, .string-head, .string-row').filter(visible);
-    if (sec === 'break') {                       // quãng lặng: chỉ dây mảnh rung khẽ
-      if (strings.length) shake(strings[strings.length - 1 - ((b + 6) % Math.min(3, strings.length))], 0.35);
-      return;
-    }
+  function onHit(strength) {
     live.kick = 1;
-    const k = ((b - 5) % 8 + 8) % 8;
-    if (strings.length) {
-      const want = PATTERN[k];
-      const el = strings.find((s) => Number(s.dataset.string) === want) || strings[k % strings.length];
-      shake(el, k % 4 === 0 ? 1 : 0.7);
-    }
-    if (nameLines.length) hit(nameLines[k % nameLines.length], '-0.05em');
-    if (k % 4 === 0) titles.forEach((el) => hit(el, '-0.04em'));
+    const strings = $$('.string').filter(visible);
+    if (strings.length) strings[hits % strings.length].dispatchEvent(new CustomEvent('qk-shake', { detail: 0.5 + strength * 0.5 }));
+    const line = nameLines[hits % (nameLines.length || 1)];
+    if (line && line.animate && visible(line)) line.animate([{ translate: '0 -0.045em', color: '#f3cd6c' }, { translate: '0 0' }], { duration: 420, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    hits++;
   }
 
-  function tick() {
-    if (!playing) return;
-    const t = ctx.currentTime - startedAt - (ctx.outputLatency || ctx.baseLatency || 0);
-    const loops = t >= LOOP_END ? Math.floor((t - DROP) / LOOP) : 0;
-    const pos = loops ? DROP + (t - DROP) % LOOP : t;
-    const bf = (pos - FIRST) / BEAT, b = Math.floor(bf), ph = bf - b;
-    const sec = b < 2 ? 'intro' : b < 5 ? 'break' : 'drop';
-
+  function tick(now) {
+    if (!current) return;
     analyser.getByteFrequencyData(bins);
     const hz = ctx.sampleRate / analyser.fftSize;
     const band = (lo, hi) => { let s = 0, n = 0; for (let i = Math.max(1, Math.round(lo / hz)); i <= Math.round(hi / hz) && i < bins.length; i++) { s += bins[i]; n++; } return n ? s / n / 255 : 0; };
-    const e = [band(40, 140), band(180, 700), band(900, 3200), band(5000, 11000)];
-    lvl += ((e[0] + e[1] + e[2]) / 3 - lvl) * 0.2;
-    eqs.forEach((bars) => bars.forEach((bar, i) => bar.style.setProperty('--e', Math.max(0.12, Math.min(1, e[i] * 1.25)).toFixed(2))));
-
+    const e = [band(40, 150), band(180, 700), band(900, 3200), band(5000, 11000)];
+    bars(current).forEach((bar, i) => bar.style.setProperty('--e', Math.max(0.15, Math.min(1, e[i] * 1.25)).toFixed(2)));
     if (!reduceMotion) {
-      const pulse = (pos < FIRST || sec === 'break') ? 0 : Math.exp(-ph * 4.2);
+      lvl += ((e[0] + e[1] + e[2]) / 3 - lvl) * 0.2;
+      // cú nhấn: tiếng trầm vọt lên so với mức trung bình gần đây
+      if (e[0] > bassAvg * 1.12 + 0.03 && e[0] > 0.3 && now - lastHit > 230) { lastHit = now; pulse = 1; onHit(Math.min(1, e[0])); }
+      bassAvg += (e[0] - bassAvg) * 0.08;
+      pulse *= 0.9;
       root.style.setProperty('--beat', pulse.toFixed(3));
       root.style.setProperty('--lvl', lvl.toFixed(3));
-      root.style.setProperty('--swing', Math.sin((bf - 5) / 8 * Math.PI * 2).toFixed(3)); // đèn lia qua lại mỗi hai ô nhịp
-      if (sec !== lastSec) { root.dataset.sec = sec; if (sec === 'drop') burst(0.5); lastSec = sec; }
-      if (loops !== lastLoop) { lastLoop = loops; burst(0.28); }
-      if (b !== lastBeat && pos >= FIRST) { lastBeat = b; onBeat(b, sec); }
+      root.style.setProperty('--swing', Math.sin((now - t0) / 1900 * Math.PI).toFixed(3));
     }
     raf = requestAnimationFrame(tick);
   }
 
-  function clear() {
+  function stop(fade = 0.2) {
+    if (!current) return;
+    const s = source, g = gain, btn = current;
+    current = null; s.onended = null;
+    g.gain.cancelScheduledValues(ctx.currentTime);
+    g.gain.setValueAtTime(g.gain.value, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0, ctx.currentTime + fade);
+    setTimeout(() => { try { s.stop(); } catch (e) { /* đã dừng */ } s.disconnect(); }, fade * 1000 + 60);
     cancelAnimationFrame(raf);
+    btn.setAttribute('aria-pressed', 'false');
+    bars(btn).forEach((bar) => bar.style.removeProperty('--e'));
     root.classList.remove('is-live');
-    delete root.dataset.sec;
     ['--beat', '--lvl', '--swing'].forEach((v) => root.style.removeProperty(v));
-    eqs.forEach((bars) => bars.forEach((bar) => bar.style.removeProperty('--e')));
     live.kick = 0;
   }
 
-  function stop() {
-    if (!playing) return;
-    playing = false;
-    const s = source, g = gain;
-    g.gain.cancelScheduledValues(ctx.currentTime);
-    g.gain.setValueAtTime(g.gain.value, ctx.currentTime);
-    g.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.25);
-    setTimeout(() => { try { s.stop(); } catch (e) { /* đã dừng */ } s.disconnect(); }, 300);
-    clear(); paint('off');
-  }
-
-  async function start() {
+  async function play(btn) {
+    let buffer;
     try {
       if (!ctx) ctx = new AC();
       if (ctx.state === 'suspended') await ctx.resume();
-      if (!buffer) { paint('loading'); await load(); }
-    } catch (e) { loading = null; paint('error'); setTimeout(() => paint('off'), 2500); return; }
-    if (playing) return;
-    source = ctx.createBufferSource();
-    source.buffer = buffer;
-    source.loop = true; source.loopStart = DROP; source.loopEnd = Math.min(LOOP_END, buffer.duration);
-    gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.85, ctx.currentTime + 0.08);
-    analyser = ctx.createAnalyser();
-    analyser.fftSize = 2048; analyser.smoothingTimeConstant = 0.72;
+      btn.disabled = true;
+      buffer = await load(btn.dataset.clip);
+    } catch (e) { cache.delete(btn.dataset.clip); btn.disabled = false; return; }
+    btn.disabled = false;
+    stop(0.12);
+    source = ctx.createBufferSource(); source.buffer = buffer;
+    gain = ctx.createGain(); gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.9, ctx.currentTime + 0.06);
+    gain.gain.setValueAtTime(0.9, ctx.currentTime + Math.max(0.1, buffer.duration - 0.4));
+    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + buffer.duration);
+    analyser = ctx.createAnalyser(); analyser.fftSize = 2048; analyser.smoothingTimeConstant = 0.7;
     bins = new Uint8Array(analyser.frequencyBinCount);
     source.connect(gain); gain.connect(analyser); analyser.connect(ctx.destination);
-    startedAt = ctx.currentTime + 0.03;
-    source.start(startedAt);
-    playing = true; lastBeat = -99; lastSec = ''; lastLoop = 0; lvl = 0;
-    root.classList.add('is-live');
-    paint('on');
+    source.onended = () => stop(0);
+    source.start();
+    current = btn; t0 = performance.now(); lvl = 0; bassAvg = 0.5; pulse = 0; hits = 0;
+    btn.setAttribute('aria-pressed', 'true');
+    if (!reduceMotion) root.classList.add('is-live');
     raf = requestAnimationFrame(tick);
   }
 
-  btns.forEach((b) => b.addEventListener('click', () => (playing ? stop() : start())));
-  // Rời tab thì tạm ngưng, quay lại thì chạy tiếp đúng chỗ
-  document.addEventListener('visibilitychange', () => {
-    if (!ctx || !playing) return;
-    if (document.hidden) { ctx.suspend(); cancelAnimationFrame(raf); } else { ctx.resume().then(() => { raf = requestAnimationFrame(tick); }); }
-  });
-  addEventListener('pagehide', () => { if (playing) { try { source.stop(); } catch (e) { /* đã dừng */ } } });
+  btns.forEach((b) => b.addEventListener('click', () => (current === b ? stop() : play(b))));
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(0.1); });
+  addEventListener('pagehide', () => stop(0));
 })();

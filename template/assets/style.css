@@ -577,17 +577,11 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(14,26,54,.09);paddi
 @media (max-width:560px){.flow{grid-template-columns:1fr}}
 
 /* ============================================================
-   Nhạc chủ đề: 128 nhịp/phút. main.js đặt --beat (nhịp phách, 1 → 0),
-   --lvl (độ lớn), --swing (đèn lia theo ô nhịp) lên thẻ html khi nhạc chạy.
+   Ba đoạn nhạc của ba dòng nhạc. Khi một đoạn đang phát, main.js đặt
+   --beat (cú nhấn tiếng trầm, 1 → 0), --lvl (độ lớn), --swing (đèn lia) lên thẻ html.
    ============================================================ */
 .eq{display:flex;align-items:flex-end;gap:2px;height:9px}
-.eq b{width:3px;height:100%;background:#5a2418;border-radius:1px;transform-origin:bottom;scale:1 var(--e,.35)}
-.pedal-theme{background:var(--brown-2)}
-.pedal-theme[aria-pressed="true"] .eq b{background:#ff5b33;box-shadow:0 0 7px 1px rgba(255,91,51,.7)}
-.btn-theme .eq{height:14px;margin-right:10px}
-.btn-theme .eq b{background:currentColor}
-.btn-theme[aria-pressed="true"]{background:var(--cream);border-color:var(--cream);color:var(--ink)}
-.btn[data-theme-toggle][disabled],.pedal[data-theme-toggle][disabled]{opacity:.6}
+.eq b{width:3px;height:100%;background:currentColor;border-radius:1px;transform-origin:bottom;scale:1 var(--e,.35)}
 .lights{position:fixed;inset:0;z-index:55;pointer-events:none;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s .5s}
 @media (prefers-reduced-motion:no-preference){
   .is-live .lights{opacity:1;visibility:visible;transition:opacity .5s}
@@ -595,17 +589,18 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(14,26,54,.09);paddi
   .lights i:nth-child(1){left:-22vmax;rotate:calc(-24deg + var(--swing,0) * 17deg)}
   .lights i:nth-child(2){right:-22vmax;rotate:calc(24deg - var(--swing,0) * 17deg)}
   .lights i:nth-child(3){left:50%;margin-left:-32vmax;rotate:calc(var(--swing,0) * -11deg);background:linear-gradient(to bottom,rgba(245,236,217,.3),rgba(245,236,217,0) 70%)}
-  html[data-sec="break"] .lights i{opacity:0;transition:opacity .35s}
   .lights b{position:absolute;inset:0;background:radial-gradient(circle at 50% 28%,rgba(243,205,108,.6),rgba(243,205,108,0) 68%);opacity:0}
 
   .is-live .hero-sun{scale:calc(1 + var(--beat,0) * .045)}
   .hero-sun::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid var(--tur-soft);opacity:0}
   .is-live .hero-sun::after{scale:calc(1.02 + (1 - var(--beat,0)) * .2);opacity:calc(var(--beat,0) * .75)}
   .is-live .hero-cut{translate:0 calc(var(--beat,0) * -5px)}
-  html[data-sec="break"] .hero-sun{scale:.9;transition:scale .5s}
-  html[data-sec="break"] .hero-name{opacity:.5;transition:opacity .4s}
   .is-live .progress i{scale:1 calc(1 + var(--beat,0) * 1.6);transform-origin:left top}
   .is-live :is(.phead-num,.row-num,.chord-name,.dyn){scale:calc(1 + var(--beat,0) * .045);transform-origin:left bottom}
   .is-live .pedal[aria-current="page"] .led{scale:calc(1 + var(--beat,0) * .7)}
 }
-@media print{.lights,.btn-theme{display:none!important}}
+.genre .eq{display:none;margin-right:8px}
+.genre[aria-pressed="true"],.genre[aria-pressed="true"]:hover{background:var(--tur);color:var(--ink)}
+.genre[aria-pressed="true"] .eq{display:inline-flex}
+.genre[disabled]{opacity:.6}
+@media print{.lights{display:none!important}}

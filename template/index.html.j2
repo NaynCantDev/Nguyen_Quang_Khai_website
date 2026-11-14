@@ -25,7 +25,6 @@
   <div class="hero-bottom">
     <blockquote class="hero-quote">“{{ quote }}”</blockquote>
     <button class="btn btn-strum" type="button" data-strum>Gảy sáu dây</button>
-    <button class="btn btn-theme" type="button" data-theme-toggle aria-pressed="false"><i class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></i><span data-theme-label>Nhạc chủ đề</span></button>
   </div>
 </header>
 
@@ -47,10 +46,10 @@
       </ul>
       <p class="hobbies-text">{{ hobbies_text }}</p>
       <div class="genres">
-        <p class="genres-lead">Ba dòng nhạc, bấm để nghe một câu dạo</p>
+        <p class="genres-lead">Ba dòng nhạc, bấm để nghe một đoạn</p>
         <div class="genres-row">
           {% for g in genres %}
-          <button class="genre" type="button" data-motif="{{ g.motif }}"><b>{{ g.name }}</b><small>{{ g.hint }}</small></button>
+          <button class="genre" type="button" data-clip="assets/audio/{{ g.clip }}" aria-pressed="false"><b>{{ g.name }}</b><small><i class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></i>{{ g.hint }}</small></button>
           {% endfor %}
         </div>
       </div>

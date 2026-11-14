@@ -25,11 +25,11 @@ hobbies:
   - Guitar
   - Piano / Organ
   - Nghiên cứu lý thuyết âm nhạc
-# Ba dòng nhạc Khải nhắc tới; "motif" là tên đoạn nhạc ngắn web tự chơi khi bấm.
+# Ba dòng nhạc Khải nhắc tới; "clip" là file trong template/assets/audio/ do Khải gửi, phát khi bấm.
 genres:
-  - { name: Nhạc truyền thống, motif: pentatonic, hint: thang năm âm }
-  - { name: Nhạc cách mạng, motif: march, hint: nhịp hành khúc }
-  - { name: V-pop hiện đại, motif: pop, hint: vòng hợp âm vi – IV – I – V }
+  - { name: Nhạc truyền thống, clip: dan-ca.m4a, hint: dân ca · 16 giây }
+  - { name: Nhạc cách mạng, clip: cach-mang.m4a, hint: 10 giây }
+  - { name: V-pop hiện đại, clip: v-pop.m4a, hint: 13 giây }
 
 # ---------- Mục tiêu học tập & định hướng phát triển ----------
 short_term_title: Mục tiêu ngắn hạn
