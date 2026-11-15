@@ -28,7 +28,7 @@ hobbies:
 # Ba dòng nhạc Khải nhắc tới; "clip" là file trong template/assets/audio/ do Khải gửi, phát khi bấm.
 genres:
   - { name: Nhạc truyền thống, clip: dan-ca.m4a, hint: dân ca · 16 giây }
-  - { name: Nhạc cách mạng, clip: cach-mang.m4a, hint: 10 giây }
+  - { name: Nhạc K-pop, clip: k-pop.m4a, hint: 10 giây }
   - { name: V-pop hiện đại, clip: v-pop.m4a, hint: 13 giây }
 
 # ---------- Mục tiêu học tập & định hướng phát triển ----------
